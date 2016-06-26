@@ -16,11 +16,6 @@ if argv.include?("-v") || argv.include?("--version")
 end
 
 require_relative "../lib/heel"
-require_relative "../heelspec/mail_template"
 
-mt = Heelspec::MailTemplate.new
-mt.run
-
-require_relative "../heelspec/eurocup_schedule_2016"
-es = Heelspec::EuroCupSchedule2016.new
-es.run
+cmd = Heel::Command.new(argv)
+cmd.parse_cmd

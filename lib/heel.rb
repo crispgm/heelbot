@@ -3,6 +3,5 @@ module Heel
   autoload :Command, "heel/command"
   autoload :Bot,     "heel/bot"
   # Utils
-  autoload :Shell,   "hell/shell"
   autoload :Mail,    "heel/mail"
 end
