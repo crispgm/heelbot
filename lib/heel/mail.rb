@@ -23,5 +23,13 @@ module Heel
         @to << name
       end
     end
+
+    def attachfile!(filenames)
+    end
+
+    def build_as_mailto
+      mailto = "mailto:#{@to}?cc=#{@cc}&subject=#{@subject}&body=#{@body}"
+      mailto
+    end
   end
 end
