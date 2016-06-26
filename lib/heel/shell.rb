@@ -1,10 +1,10 @@
 module Heel
-  module Shell
-    def sh(cmd...)
+  class Shell
+    def self.sh(cmd)
       system(cmd)
     end
 
-    def open(filename)
+    def self.open(filename)
       sh "open #{filename}"
     end
   end
