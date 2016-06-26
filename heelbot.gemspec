@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Heel::VERSION
   spec.authors       = ["David Zhang"]
   spec.email         = ["crispgm@gmail.com"]
-  spec.summary       = ""
+  spec.summary       = "A library to build an awesome bot"
   spec.homepage      = "https://github.com/crispgm/heelbot"
   spec.license       = "MIT"
 
