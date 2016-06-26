@@ -8,7 +8,7 @@ module Heelspec
       @bot_version = "1.0.0"
     end
 
-    def run
+    def run(cmd)
       Heel::Shell.open "https://gist.github.com/crispgm/1eedbc85b23470a5b9ca81ac3072f8f1"
     end
   end

@@ -8,9 +8,13 @@ module Heelspec
       @bot_version = "1.0.0"
     end
 
-    def run
+    def run(cmd)
       @mail = Heel::MailHelper.new
-      to_people = ["zhangwanlong", "cuishichao"]
+
+      require_relative "./group_members"
+      gm = GroupMembers.new
+      info = gm.get_group "dev"
+      to_people = info[:members]
       @mail.add_to!(to_people, "@baidu.com")
       puts @mail.to
     end
