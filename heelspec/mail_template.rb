@@ -1,4 +1,5 @@
 require "heel/bot"
+require "heel/mail"
 
 module Heelspec
   class MailTemplate < Heel::Bot::Bot
@@ -8,7 +9,10 @@ module Heelspec
     end
 
     def run
-      puts @bot_name, @bot_version
+      @mail = Heel::MailHelper.new
+      to_people = ["zhangwanlong", "cuishichao"]
+      @mail.add_to!(to_people, "@baidu.com")
+      puts @mail.to
     end
   end
 end
