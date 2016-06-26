@@ -6,7 +6,8 @@ module Heel
 
     def initialize(argv)
       @argv = argv
-      @bot_list = ["mail_template", "eurocup_schedule_2016"]
+      # write here, before implementing `add`
+      @bot_list = ["mail_template", "eurocup_schedule_2016", "group_members"].freeze
     end
 
     def usage
@@ -39,7 +40,7 @@ DESC
           usage
         end
       elsif argv[0].eql? "run"
-        run(argv[1])
+        run(argv[1], argv.slice(2, argv.length))
       else
         usage
       end
@@ -53,12 +54,12 @@ DESC
       end
     end
 
-    def run(bot_name)
+    def run(bot_name, bot_cmd)
       require_relative "../../heelspec/#{bot_name}"
       bot_class_name = bot_name_to_class_name(bot_name)
       bot_class = eval("Heelspec::#{bot_class_name}")
       bot = bot_class.new
-      bot.run
+      bot.run(bot_cmd)
     end
 
     def bot_name_to_class_name(bot_name)
