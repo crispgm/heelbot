@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "sinatra"
   spec.add_dependency "mail"
+  spec.add_dependency "os"
 end
