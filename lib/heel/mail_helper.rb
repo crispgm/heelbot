@@ -1,6 +1,5 @@
 module Heel
   class MailHelper
-    require "mail"
 
     attr_accessor :from, :to, :cc, :subject, :body, :attachments
 
