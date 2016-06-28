@@ -34,7 +34,26 @@ module Heel
     def attachfile!(filenames)
     end
 
+    def valid?
+      if @to.length <=0
+        false
+      end
+      true
+    end
+
+    def valid_strict?
+      true if valid?
+      if @subject.length <= 0
+        false
+      end
+      if @body.length <= 0
+        false
+      end
+      true
+    end
+
     def build_as_mailto
+      false if !valid?
       mailto = "mailto:#{@to}?cc=#{@cc}&subject=#{@subject}&body=#{@body}"
       mailto
     end
