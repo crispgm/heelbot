@@ -9,7 +9,7 @@ task :run do
   sh "bundle exec bin/heelbot"
 end
 
-task :num do
+task :count do
   files = `git ls-files -z`.split("\x0")
   shell_cmd = "wc -l "
   files.grep(%r{^(bin|lib|test|heelspec)/}).each do |f|
