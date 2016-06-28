@@ -1,8 +1,5 @@
-require "heel/bot"
-require "heel/shell"
-
 module Heelspec
-  class EurocupSchedule2016 < Heel::Bot::Bot
+  class EurocupSchedule2016 < Heel::Bot
     def initialize
       @bot_name = "Euro Cup Schedule 2016"
       @bot_version = "1.0.0"

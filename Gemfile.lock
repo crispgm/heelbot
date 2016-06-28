@@ -3,6 +3,7 @@ PATH
   specs:
     heelbot (1.0.0)
       mail
+      os
       sinatra
 
 GEM

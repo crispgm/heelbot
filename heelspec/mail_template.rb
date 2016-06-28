@@ -1,9 +1,5 @@
-require "heel/bot"
-require "heel/mail"
-require "heel/shell"
-
 module Heelspec
-  class MailTemplate < Heel::Bot::Bot
+  class MailTemplate < Heel::Bot
     def initialize
       @bot_name = "Mail Template Generator"
       @bot_version = "1.0.0"
@@ -36,7 +32,7 @@ module Heelspec
 
       mail_to = @mail.build_as_mailto
       Heel::Shell.open "\"#{mail_to}\""
-      
+
     end
   end
 end

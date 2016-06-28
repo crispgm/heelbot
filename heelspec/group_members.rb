@@ -1,7 +1,5 @@
-require "heel/bot"
-
 module Heelspec
-  class GroupMembers < Heel::Bot::Bot
+  class GroupMembers < Heel::Bot
 
     attr_reader :groups
 
@@ -55,6 +53,7 @@ module Heelspec
     def print_all_groups
       @groups.each do |name, info|
         print_group_info info
+        puts ""
       end
     end
 
