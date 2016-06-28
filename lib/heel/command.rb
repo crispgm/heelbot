@@ -39,7 +39,7 @@ DESC
           usage
         end
       elsif argv[0].eql? "run"
-        @bot_manager.run(argv[1], argv.slice(2, argv.length))
+        @bot_manager.run_bot(argv[1], argv.slice(2, argv.length))
       else
         usage
       end
