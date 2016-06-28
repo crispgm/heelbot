@@ -1,7 +1,17 @@
 module Heel
+
   # Main Funcs
-  autoload :Command, "heel/command"
-  autoload :Bot,     "heel/bot"
+  require "heel/command"
+  require "heel/bot"
+  require "heel/bot_manager"
+
   # Utils
-  autoload :Mail,    "heel/mail"
+  require "heel/mail_helper"
+  require "heel/shell"
+
+  # Third-parties
+  require "mail"
+  require "os"
+  require "yaml"
+
 end

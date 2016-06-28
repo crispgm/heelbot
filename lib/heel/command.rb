@@ -2,12 +2,11 @@ module Heel
   class Command
 
     attr_reader :argv
-    attr_reader :bot_list
+    attr_reader :bot_manager
 
     def initialize(argv)
       @argv = argv
-      # write here, before implementing `add`
-      @bot_list = ["mail_template", "eurocup_schedule_2016", "eurocup_results_2016", "group_members"].freeze
+      @bot_manager = BotManager.new
     end
 
     def usage
@@ -33,14 +32,14 @@ DESC
         if argv[1].eql? "list"
           list
         elsif argv[1].eql? "add"
-          puts "add"
+          @bot_manager.add_bot
         elsif argv[1].eql? "remove"
-          puts "remove"
+          @bot_manager.remove_bot
         else
           usage
         end
       elsif argv[0].eql? "run"
-        run(argv[1], argv.slice(2, argv.length))
+        @bot_manager.run(argv[1], argv.slice(2, argv.length))
       else
         usage
       end
@@ -49,26 +48,9 @@ DESC
     private
 
     def list
-      @bot_list.each do |bot_name|
-        puts "#{bot_name}"
+      @bot_manager.bot_list.each do |bot|
+        puts "#{bot["Name"]}, #{bot["Ver"]}"
       end
-    end
-
-    def run(bot_name, bot_cmd)
-      require_relative "../../heelspec/#{bot_name}"
-      bot_class_name = bot_name_to_class_name(bot_name)
-      bot_class = eval("Heelspec::#{bot_class_name}")
-      bot = bot_class.new
-      bot.run(bot_cmd)
-    end
-
-    def bot_name_to_class_name(bot_name)
-      ary_bot_name = bot_name.split "_"
-      class_name = ""
-      ary_bot_name.each do |name_part|
-        class_name << name_part.capitalize
-      end
-      class_name
     end
 
   end
