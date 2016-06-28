@@ -12,11 +12,13 @@ module Heelspec
       @groups = {
         "dev" => {
           :description => "Development Integration Group",
-          :members => ["zhangwanlong", "cuishichao", "yunting", "miaodongdong", "dengxi", "hanpeng03", "hezhipeng"]
+          :members => ["zhangwanlong", "cuishichao", "yunting", "miaodongdong", "dengxi", "hanpeng03", "hezhipeng"],
+          :managers => ["luhua01", "hejian01"]
         },
         "bravo" => {
           :description => "Bravo Team",
-          :members => ["zhangwanlong", "cuishichao", "yunting", "miaodongdong", "dengxi"]
+          :members => ["zhangwanlong", "cuishichao", "yunting", "miaodongdong", "dengxi"],
+          :managers => ["luhua01"]
         }
       }
     end
@@ -29,6 +31,7 @@ module Heelspec
 
       if cmd[0] == "all"
         print_all_groups
+        puts ""
         return
       elsif cmd[0] == "list"
         list_group
@@ -58,6 +61,7 @@ module Heelspec
     def print_group_info(info)
       puts info[:description]
       puts info[:members].join ","
+      puts info[:managers].join ","
     end
 
     def get_group(group_name)
