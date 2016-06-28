@@ -9,15 +9,7 @@ Heelbot is a Ruby framework to build an awesome bot. We believe that every dupli
 ## Installation
 
 ```
-gem install hellbot
-```
-
-```
-gem "heelbot"
-```
-
-```
-require "heel"
+gem install heelbot
 ```
 
 ## Usage
@@ -39,3 +31,13 @@ heelbot run BOT_NAME
 ### Eurocup 2016 Schedule
 
 ### Eurocup 2016 Results
+
+## Build Bots
+
+```
+gem "heelbot"
+```
+
+```
+require "heel"
+```
