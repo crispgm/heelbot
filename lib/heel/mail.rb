@@ -24,6 +24,13 @@ module Heel
       end
     end
 
+    def add_cc!(ary_names, postfix)
+      ary_names.each do |name|
+        name <<  postfix << ";"
+        @cc << name
+      end
+    end
+
     def attachfile!(filenames)
     end
 
