@@ -7,7 +7,7 @@ module Heel
     def initialize(argv)
       @argv = argv
       # write here, before implementing `add`
-      @bot_list = ["mail_template", "eurocup_schedule_2016", "group_members"].freeze
+      @bot_list = ["mail_template", "eurocup_schedule_2016", "eurocup_results_2016", "group_members"].freeze
     end
 
     def usage
