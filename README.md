@@ -1,5 +1,7 @@
 # Heelbot
 
+[![Join the chat at https://gitter.im/crispgm/heelbot](https://badges.gitter.im/crispgm/heelbot.svg)](https://gitter.im/crispgm/heelbot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Introduction
