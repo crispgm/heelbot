@@ -18,7 +18,11 @@ module Heelspec
     end
 
     def run(cmd)
-      body = query(cmd[0])
+      word = get_param(cmd, 0)
+      if word == nil
+        exit 1
+      end
+      body = query(word)
       spell_flag = false
       if cmd[1] != nil && cmd[1].eql?("--say")
         spell_flag = true
