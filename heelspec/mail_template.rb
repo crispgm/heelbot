@@ -22,7 +22,7 @@ module Heelspec
       cc_people = info[:managers]
       # for testing
       cur_date = Time.now.strftime("%Y%m%d")
-      subject = "研发一体化日报 #{cur_date}"
+      subject = "Tech 项目日报 #{cur_date}"
       body = "\n===\n张皖龙"
 
       @mail.add_to!(to_people, "@baidu.com")
@@ -32,7 +32,6 @@ module Heelspec
 
       mail_to = @mail.build_as_mailto
       Heel::Shell.open "\"#{mail_to}\""
-
     end
   end
 end
