@@ -18,7 +18,10 @@ module Heelspec
     end
 
     def run(cmd)
-      @city = cmd[0]
+      @city = get_param(cmd, 0)
+      if @city == nil
+        exit 1
+      end
       body = query(@city)
       parse(body)
     end
