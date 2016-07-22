@@ -61,7 +61,7 @@ module Heelspec
     end
 
     def print_all_groups
-      @groups.each do |name, info|
+      @groups.each do |_name, info|
         print_group_info info
         puts ""
       end
