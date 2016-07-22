@@ -17,8 +17,8 @@ Version
     heel --version
 
 Bot
-    heel bot list
-    heel bot help [bot_name]
+    heel list
+    heel help [bot_name]
     heel run [bot_name]
 
 DESC
@@ -27,14 +27,10 @@ DESC
     end
 
     def parse_cmd
-      if argv[0].eql? "bot"
-        if argv[1].eql? "list"
-          list
-        elsif argv[1].eql? "help"
-          @bot_manager.help_bot(argv[2])
-        else
-          usage
-        end
+      if argv[0].eql? "list"
+        list
+      elsif argv[0].eql? "help"
+        @bot_manager.help_bot(argv[1])
       elsif argv[0].eql? "run"
         @bot_manager.run_bot(argv[1], argv.slice(2, argv.length))
       else
