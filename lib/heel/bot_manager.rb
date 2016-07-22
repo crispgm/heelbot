@@ -37,7 +37,7 @@ module Heel
     private
 
     def load_bots
-      if File.exists? BOT_CONF_NAME
+      if File.exist? BOT_CONF_NAME
         @new_conf = false;
         @bot_list = YAML.load_file BOT_CONF_NAME
       else
