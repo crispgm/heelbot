@@ -3,6 +3,7 @@ module Heelspec
 
     require "open-uri"
     require "CGI"
+    require "json"
 
     API_KEY = "fb45a134a153bbc65dddf61682da581c".freeze
     API_URL = "http://apis.baidu.com/apistore/aqiservice/aqi".freeze
@@ -17,22 +18,22 @@ module Heelspec
     end
 
     def run(cmd)
-      body = query(cmd[0])
+      @city = cmd[0]
+      body = query(@city)
       parse(body)
     end
 
     private
 
     def query(word)
-      q = "#{API_URL}?city=#{CGI.escape(word)}"
-
-      open q do |http|
+      open("#{API_URL}?city=#{CGI.escape(word)}", "apikey" => API_KEY) do |http|
         http.read
       end
     end
 
     def parse(body)
-      puts body
+      parsed = JSON.parse(body)
+      puts "AQI of #{@city} is #{parsed["retData"]["aqi"]}"
     end
   end
 end
