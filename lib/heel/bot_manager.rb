@@ -13,7 +13,12 @@ module Heel
     end
 
     def init_bot(bot_name)
-      require_relative "../../heelspec/#{bot_name}"
+      begin
+        require_relative "../../heelspec/#{bot_name}"
+      rescue LoadError
+        puts "#{bot_name} not found"
+        exit 1
+      end
       bot_class_name = bot_name_to_class_name(bot_name)
       bot_class = eval("Heelspec::#{bot_class_name}")
       @bot = bot_class.new
