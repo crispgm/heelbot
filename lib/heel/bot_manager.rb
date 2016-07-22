@@ -20,7 +20,6 @@ module Heel
         exit 1
       end
       bot_class_name = bot_name_to_class_name(bot_name)
-      #bot_class = eval("Heelspec::#{bot_class_name}")
       bot_class = Object.const_get("Heelspec::#{bot_class_name}")
       @bot = bot_class.new
     end
