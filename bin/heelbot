@@ -3,7 +3,7 @@
 # Split arguments by "--" if its there, we'll recombine them later
 argv = ARGV.dup
 argv_extra = []
-if idx = argv.index("--")
+if idx == argv.index("--")
   argv_extra = argv.slice(idx+1, argv.length-2)
   argv = argv.slice(0, idx)
 end
