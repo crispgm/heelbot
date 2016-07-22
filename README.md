@@ -16,29 +16,24 @@ gem install heelbot
 ## Usage
 
 ```
-heelbot bot add BOT_NAME
-heelbot bot remove BOT_NAME
+# List All Bots
 heelbot bot list
 
+# Help of Bot
+heelbot bot help BOT_NAME
+
+# Run Bot
 heelbot run BOT_NAME
 ```
 
 ## In-house Bots
 
-### Group Members
-
-### Mail Template
-
-### Eurocup 2016 Schedule
-
-### Eurocup 2016 Results
+* Group Members
+* Mail Template
+* Eurocup 2016 Schedule
+* Eurocup 2016 Results
+* iCiba
+* Air Quality Index
 
 ## Build Bots
 
-```
-gem "heelbot"
-```
-
-```
-require "heel"
-```
