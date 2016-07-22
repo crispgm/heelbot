@@ -14,7 +14,7 @@ module Heelspec
       @bot_summary  = "Query realtime Air Quality Index"
       @bot_author   = "David Zhang"
       @bot_license  = "MIT"
-      @bot_helptext = "aqi city_name\t\tQuery city_name"
+      @bot_helptext = "aqi city_name"
     end
 
     def run(cmd)

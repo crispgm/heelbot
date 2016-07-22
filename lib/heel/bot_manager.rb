@@ -12,18 +12,21 @@ module Heel
       load_bots
     end
 
-    def add_bot(bot_name)
-    end
-
-    def remove_bot(bot_name)
-    end
-
-    def run_bot(bot_name, bot_cmd)
+    def init_bot(bot_name)
       require_relative "../../heelspec/#{bot_name}"
       bot_class_name = bot_name_to_class_name(bot_name)
       bot_class = eval("Heelspec::#{bot_class_name}")
-      bot = bot_class.new
-      bot.run(bot_cmd)
+      @bot = bot_class.new
+    end
+
+    def run_bot(bot_name, bot_cmd)
+      init_bot(bot_name)
+      @bot.run(bot_cmd)
+    end
+
+    def help_bot(bot_name)
+      init_bot(bot_name)
+      puts @bot.bot_helptext
     end
 
     private

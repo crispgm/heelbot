@@ -18,8 +18,7 @@ Version
 
 Bot
     heel bot list
-    heel bot add [bot_name]
-    heel bot remove [bot_name]
+    heel bot help [bot_name]
     heel run [bot_name]
 
 DESC
@@ -31,10 +30,8 @@ DESC
       if argv[0].eql? "bot"
         if argv[1].eql? "list"
           list
-        elsif argv[1].eql? "add"
-          @bot_manager.add_bot
-        elsif argv[1].eql? "remove"
-          @bot_manager.remove_bot
+        elsif argv[1].eql? "help"
+          @bot_manager.help_bot(argv[2])
         else
           usage
         end
