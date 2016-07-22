@@ -7,7 +7,6 @@ module Heel
     attr_accessor :bot_license
     attr_accessor :bot_helptext
 
-    public
     def get_param(cmd, index)
       begin
         if cmd[index].empty?
