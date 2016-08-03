@@ -2,36 +2,97 @@ module Heelspec
   class MailTemplate < Heel::Bot
     def initialize
       @bot_name = "Mail Template Generator"
-      @bot_version = "1.0.0"
+      @bot_version = "2.0.0"
+      @bot_summary  = "Generate email with group members and Liquid template"
+      @bot_author   = "David Zhang"
+      @bot_license  = "MIT"
+      @bot_helptext = "mail_template group_name template_name"
     end
 
     def run(cmd)
-      # call GroupMembers
-      require_relative "./group_members"
-      gm = GroupMembers.new
-
       if cmd.length == 0
-        puts "Error: Nil group name"
+        puts "Error: Nil template name"
         return
       end
 
-      info = gm.get_group cmd[0]
+      template_name = get_param(cmd, 0)
+
+      if !build_vars(template_name)
+        puts "Error: build vars failed"
+        return
+      end
+
       # build mail
       @mail = Heel::MailHelper.new
-      to_people = info[:members]
-      cc_people = info[:managers]
-      # for testing
-      cur_date = Time.now.strftime("%Y%m%d")
-      subject = "Tech 项目日报 #{cur_date}"
-      body = "\n===\n张皖龙"
-
-      @mail.add_to!(to_people, "@baidu.com")
-      @mail.add_cc!(cc_people, "@baidu.com")
-      @mail.subject = subject
-      @mail.body = body
+      @mail.add_to_raw! @to_people
+      @mail.add_cc_raw! @cc_people
+      @mail.subject = @subject
+      @mail.body = @body
 
       mail_to = @mail.build_as_mailto
+      p mail_to
       Heel::Shell.open "\"#{mail_to}\""
+    end
+
+    private
+
+    def read_yml(template_name)
+      yml_path = "heelspec/mail_template/#{template_name}.yml"
+
+      if File.exist? yml_path
+        @template_data = YAML.load_file yml_path
+      end
+    end
+
+    def build_vars(template_name)
+      begin
+        read_yml(template_name)
+      rescue
+        puts "Error: read yml failed"
+        return
+      end
+
+      Liquid::Template.register_tag('group_members', GroupMembersTag)
+
+      @created_time = Time.now
+
+      @template  = Liquid::Template.parse(@template_data["to"])
+      @to_people = @template.render("created_time" => "#{@created_time}")
+      @template  = Liquid::Template.parse(@template_data["cc"])
+      @cc_people = @template.render("created_time" => "#{@created_time}")
+      @template  = Liquid::Template.parse(@template_data["title"])
+      @subject   = @template.render("created_time" => "#{@created_time}")
+      @template  = Liquid::Template.parse(@template_data["body"])
+      @body      = @template.render("created_time" => "#{@created_time}")
+
+      true
+    end
+  end
+
+  require "liquid"
+
+  class GroupMembersTag < Liquid::Tag
+    def initialize(tag_name, text, tokens)
+      super
+      params = text.strip.split(" ")
+      @group_name = params[0]
+      @group_role = params[1]
+    end
+
+    def render(context)
+      # call GroupMembers
+      require_relative "./group_members"
+      gm = GroupMembers.new
+      info = gm.get_group(@group_name)
+
+      if info == false
+        puts "Error: Group #{@text} is not existed"
+        false
+      end
+
+      role_symbol = @group_role.to_sym
+      output = info[role_symbol].join "@baidu.com;"
+      (output << "@baidu.com")
     end
   end
 end

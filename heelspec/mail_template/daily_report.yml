@@ -1,0 +1,8 @@
+title: 'Tech 项目日报 {{ created_time | date: "%Y%m%d" }}'
+to: '{% group_members tech_core members %}'
+cc: '{% group_members tech_core managers %}'
+body: |
+  Hi all,
+
+  ===
+  zhangwanlong
