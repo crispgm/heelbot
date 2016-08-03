@@ -16,18 +16,26 @@ module Heel
     def build_html_body
     end
 
-    def add_to!(ary_names, postfix)
+    def add_to!(ary_names, postfix = '')
       ary_names.each do |name|
         name <<  postfix << ";"
         @to << name
       end
     end
 
-    def add_cc!(ary_names, postfix)
+    def add_to_raw!(to_addr)
+      @to = to_addr
+    end
+
+    def add_cc!(ary_names, postfix = '')
       ary_names.each do |name|
         name <<  postfix << ";"
         @cc << name
       end
+    end
+
+    def add_cc_raw!(cc_addr)
+      @cc = cc_addr
     end
 
     def attachfile!(filenames)
