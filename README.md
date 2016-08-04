@@ -6,35 +6,41 @@
 
 ## Introduction
 
-Heelbot is a Ruby framework to build an awesome bot. We believe that every duplicated work can be done automatically.
+Heelbot helps us enable work automation, by providing a minimal Ruby framework to build awesome bots. We believe that every duplicated work can be done automatically.
 
 ## Installation
 
 ```
-gem install heelbot
+git clone https://github.com/crispgm/heelbot.git
+
+cd heelbot
+
+bundle install
+
+bundle exec bin/heel --version
 ```
 
 ## Usage
 
 ```
 # List All Bots
-heelbot bot list
+bundle exec bin/heel bot list
 
 # Help of Bot
-heelbot bot help BOT_NAME
+bundle exec bin/heel help BOT_NAME
 
 # Run Bot
-heelbot run BOT_NAME
+bundle exec bin/heel run BOT_NAME
 ```
 
 ## In-house Bots
 
 * Group Members
 * Mail Template
-* Eurocup 2016 Schedule
-* Eurocup 2016 Results
-* iCiba
+* iCiba Online Dictionary
 * Air Quality Index
+* Eurocup 2016 Schedule (deprecated)
+* Eurocup 2016 Results (deprecated)
 
 ## Build Bots
 
