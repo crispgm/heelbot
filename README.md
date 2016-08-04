@@ -39,6 +39,7 @@ bundle exec bin/heel run BOT_NAME
 * Mail Template
 * iCiba Online Dictionary
 * Air Quality Index
+* Hello World (Sample Bot)
 * Eurocup 2016 Schedule (deprecated)
 * Eurocup 2016 Results (deprecated)
 
