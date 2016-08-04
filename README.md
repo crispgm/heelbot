@@ -38,3 +38,43 @@ heelbot run BOT_NAME
 
 ## Build Bots
 
+1. Create a file in ```./heelspec```, e.g. ```hello_world.rb```
+
+    ```
+    module Heelspec
+      class HelloWorld < Heel::Bot
+        def initialize
+          @bot_name     = "Hello World"
+          @bot_version  = "1.0.0"
+          @bot_summary  = "Print Hello World"
+          @bot_author   = "David Zhang"
+          @bot_license  = "MIT"
+          @bot_helptext = ""
+        end
+
+        def run(cmd)
+          @msg = get_param(cmd, 0)
+          puts @msg
+        end
+      end
+    end
+    ```
+
+2. Add your bot to ```bots.yml```
+
+    ```
+    - Name: hello_world
+      Ver: 1.0.0
+    ```
+
+3. Run the bot
+
+    ```
+    bundle exec bin/heel run hello_world "hello, world"
+    ```
+
+    The result is:
+
+    ```
+    hello, world
+    ```

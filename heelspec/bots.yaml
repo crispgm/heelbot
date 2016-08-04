@@ -1,7 +1,7 @@
 - Name: group_members
   Ver: 1.0.0
 - Name: mail_template
-  Ver: 1.0.0
+  Ver: 2.0.0
 - Name: eurocup_schedule_2016
   Ver: 1.0.0
 - Name: eurocup_results_2016
@@ -9,4 +9,6 @@
 - Name: iciba
   Ver: 1.0.0
 - Name: aqi
+  Ver: 1.0.0
+- Name: hello_world
   Ver: 1.0.0
