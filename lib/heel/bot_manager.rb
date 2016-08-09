@@ -34,6 +34,16 @@ module Heel
       puts @bot.bot_helptext
     end
 
+    def info_bot(bot_name)
+      init_bot(bot_name)
+      puts "Name:     #{bot_name}"
+      puts "Version:  #{@bot.bot_version}"
+      puts "Summary:  #{@bot.bot_summary}"
+      puts "Author:   #{@bot.bot_author}"
+      puts "License:  #{@bot.bot_license}"
+      puts "Helptext: #{@bot.bot_helptext}"
+    end
+
     private
 
     def load_bots

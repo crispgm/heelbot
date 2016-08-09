@@ -19,7 +19,8 @@ Version
 Bot
     heel list
     heel help [bot_name]
-    heel run [bot_name]
+    heel run  [bot_name]
+    heel info [bot_name]
 
 DESC
 
@@ -33,6 +34,8 @@ DESC
         @bot_manager.help_bot(argv[1])
       elsif argv[0].eql? "run"
         @bot_manager.run_bot(argv[1], argv.slice(2, argv.length))
+      elsif argv[0].eql? "info"
+        @bot_manager.info_bot(argv[1])
       else
         usage
       end
@@ -42,7 +45,7 @@ DESC
 
     def list
       @bot_manager.bot_list.each do |bot|
-        puts "#{bot["Name"]}, #{bot["Ver"]}"
+        puts "#{bot["Name"]}"
       end
     end
 
