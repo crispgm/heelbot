@@ -1,5 +1,5 @@
 # coding: utf-8
-task default: %w[run]
+task default: %w[test]
 
 task :init do
   sh "bundle install"
