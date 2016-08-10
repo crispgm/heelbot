@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 gemspec
 
 $:.unshift File.expand_path("../lib", __FILE__)
