@@ -11,6 +11,7 @@ end
 
 task :test do
   sh "bundle exec ruby test/test_bot_manager.rb"
+  sh "bundle exec ruby test/test_shell.rb"
 end
 
 task :count do
