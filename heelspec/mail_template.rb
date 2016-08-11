@@ -1,5 +1,8 @@
 module Heelspec
   class MailTemplate < Heel::Bot
+
+    require "liquid"
+
     def initialize
       @bot_name = "Mail Template Generator"
       @bot_version = "2.0.0"
@@ -68,8 +71,6 @@ module Heelspec
       true
     end
   end
-
-  require "liquid"
 
   class GroupMembersTag < Liquid::Tag
     def initialize(tag_name, text, tokens)
