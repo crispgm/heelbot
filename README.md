@@ -31,6 +31,9 @@ bundle exec bin/heel bot list
 # Help of Bot
 bundle exec bin/heel help BOT_NAME
 
+# Info of Bot
+bundle exec bin/heel info BOT_NAME
+
 # Run Bot
 bundle exec bin/heel run BOT_NAME
 ```
@@ -73,7 +76,6 @@ bundle exec bin/heel run BOT_NAME
 
     ```
     - Name: hello_world
-      Ver: 1.0.0
     ```
 
 3. Run the bot
