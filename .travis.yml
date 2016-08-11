@@ -3,3 +3,7 @@ rvm:
   - 2.0.0
 notifications:
   webhooks: https://hook.bearychat.com/=bw7pB/travis/aedf8737c217fa72c9f32a9c7f684492
+addons:
+  code_climate:
+    repo_token:
+      secure: "f6a6582292341a8d5cb5a47f67cb1cc90140701408a90b03138cfb0f098a50ad"
