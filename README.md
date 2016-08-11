@@ -4,6 +4,7 @@
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Code Climate](https://codeclimate.com/github/crispgm/heelbot/badges/gpa.svg)](https://codeclimate.com/github/crispgm/heelbot)
 ![](https://api.travis-ci.org/crispgm/heelbot.svg)
+[![Test Coverage](https://codeclimate.com/github/crispgm/heelbot/badges/coverage.svg)](https://codeclimate.com/github/crispgm/heelbot/coverage)
 
 ## Introduction
 
