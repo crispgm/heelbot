@@ -6,7 +6,7 @@ class TestBotManager < Minitest::Test
   end
 
   def test_init
-    assert_equal(@bot_manager.bot_list.size, 7)
+    assert_equal(@bot_manager.bot_list.size, 8)
     assert_equal(@bot_manager.bot_list[0]["Name"], "group_members")
     assert_equal(@bot_manager.bot_list[1]["Name"], "mail_template")
     assert_equal(@bot_manager.bot_list[2]["Name"], "eurocup_schedule_2016")

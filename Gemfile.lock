@@ -20,8 +20,13 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_portile2 (2.1.0)
     minitest (5.9.0)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     os (0.9.6)
+    pkg-config (1.1.7)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -48,6 +53,7 @@ DEPENDENCIES
   liquid
   mail
   minitest
+  nokogiri
   os
   rake
   sinatra

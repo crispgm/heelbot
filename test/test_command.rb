@@ -18,6 +18,7 @@ eurocup_results_2016
 iciba
 aqi
 hello_world
+rio_olympic_medal_count
 OUT
     assert_output(output) {
       assert_equal("list", @cmd.parse_cmd)
