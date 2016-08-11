@@ -50,7 +50,7 @@ module Heel
     end
 
     def valid_strict?
-      return true if valid?
+      return false if !valid?
       if @subject.length <= 0
         false
       elsif @body.length <= 0

@@ -6,6 +6,7 @@ task :test do
   sh "bundle exec ruby test/test_bot_manager.rb"
   sh "bundle exec ruby test/test_shell.rb"
   sh "bundle exec ruby test/test_command.rb"
+  sh "bundle exec ruby test/test_mail.rb"
 end
 
 task :count do
