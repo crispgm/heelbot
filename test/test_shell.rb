@@ -9,4 +9,8 @@ class TestShell < Minitest::Test
       assert_equal('Cannot open in non-mac system', exception.message)
     end
   end
+
+  def test_shell_sh
+    assert_equal(true, Heel::Shell.sh('echo'))
+  end
 end
