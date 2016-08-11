@@ -1,4 +1,4 @@
-require_relative "helper"
+require "helper"
 
 class TestMail < Minitest::Test
   def setup

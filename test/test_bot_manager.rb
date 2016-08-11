@@ -1,4 +1,4 @@
-require_relative "helper"
+require "helper"
 
 class TestBotManager < Minitest::Test
   def test_init

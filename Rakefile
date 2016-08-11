@@ -2,12 +2,12 @@
 
 task default: %w[test]
 
-task :test do
-  sh "bundle exec ruby test/test_bot_manager.rb"
-  sh "bundle exec ruby test/test_bot.rb"
-  sh "bundle exec ruby test/test_shell.rb"
-  sh "bundle exec ruby test/test_command.rb"
-  sh "bundle exec ruby test/test_mail.rb"
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs << 'lib' << 'test' << 'heelspec'
+  t.test_files = FileList['test/test*.rb']
+  t.verbose = true
 end
 
 task :count do

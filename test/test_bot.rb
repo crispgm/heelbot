@@ -1,7 +1,7 @@
-require_relative "helper"
+require "helper"
 require_relative "../heelspec/hello_world"
 
-class TestMail < Minitest::Test
+class TestBot < Minitest::Test
   def setup
     @bot = Heelspec::HelloWorld.new
   end

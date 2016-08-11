@@ -1,4 +1,4 @@
-require_relative "helper"
+require "helper"
 
 class TestCommand < Minitest::Test
   def setup

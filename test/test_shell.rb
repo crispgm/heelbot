@@ -1,4 +1,4 @@
-require_relative "helper"
+require "helper"
 
 class TestShell < Minitest::Test
   def test_open_fail_in_non_mac_os
