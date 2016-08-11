@@ -3,7 +3,7 @@ require_relative "../lib/heel"
 
 class TestShell < Minitest::Test
   def test_open_fail_in_non_mac_os
-    exception = assert_raises ShellOpenError do
+    exception = assert_raises Heel::ShellOpenError do
       Heel::Shell.open('')
     end
     assert_equal('Cannot open in non-mac system', exception.message)
