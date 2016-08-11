@@ -1,5 +1,4 @@
-require "minitest/autorun"
-require_relative "../lib/heel"
+require_relative "helper"
 
 class TestBotManager < Minitest::Test
   def test_init
