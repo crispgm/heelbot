@@ -5,7 +5,7 @@ module Heel
 
     @new_conf = false
 
-    attr_reader :bot_list
+    attr_reader :bot_list, :bot
 
     def initialize
       @bot_list ||= []
@@ -17,7 +17,7 @@ module Heel
         require_relative "../../heelspec/#{bot_name}"
       rescue LoadError
         puts "#{bot_name} not found"
-        exit 1
+        return
       end
       bot_class_name = bot_name_to_class_name(bot_name)
       bot_class = Object.const_get("Heelspec::#{bot_class_name}")
