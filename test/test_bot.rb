@@ -23,4 +23,10 @@ class TestBot < Minitest::Test
     cmd = ["aaa"]
     assert_equal(cmd[0], @bot.get_param(cmd, 0))
   end
+
+  def test_run
+    assert_output("hello, world\n") {
+      @bot.run(['hello, world'])
+    }
+  end
 end
