@@ -44,23 +44,24 @@ module Heel
     def valid?
       if @to.length <=0
         false
+      else
+        true
       end
-      true
     end
 
     def valid_strict?
-      true if valid?
+      return true if valid?
       if @subject.length <= 0
         false
-      end
-      if @body.length <= 0
+      elsif @body.length <= 0
         false
+      else
+        true
       end
-      true
     end
 
     def build_as_mailto
-      false if !valid?
+      return false if !valid?
       mailto = "mailto:#{@to}?cc=#{@cc}&subject=#{@subject}&body=#{@body}"
       mailto
     end
