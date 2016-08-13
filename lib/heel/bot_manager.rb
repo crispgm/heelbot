@@ -1,6 +1,8 @@
 module Heel
   class BotManager
 
+    require "yaml"
+
     BOT_CONF_NAME = "heelspec/bots.yaml"
 
     @new_conf = false

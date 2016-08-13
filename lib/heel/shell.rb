@@ -1,6 +1,8 @@
 module Heel
   class Shell
 
+    require "os"
+
     def self.sh(cmd)
       system(cmd)
     end

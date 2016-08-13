@@ -8,10 +8,6 @@ module Heel
   # Utils
   require "heel/mail_helper"
   require "heel/shell"
-
-  # Third-parties
-  require "mail"
-  require "os"
-  require "yaml"
+  require "heel/version"
 
 end
