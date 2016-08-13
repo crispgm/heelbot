@@ -1,0 +1,10 @@
+title: '张皖龙 个人周报 {{ created_time | date: "%Y%m%d" }}'
+to: 'luhua@baidu.com'
+cc: ''
+body: |
+  Hi,
+
+  见附件。
+
+  ===
+  zhangwanlong
