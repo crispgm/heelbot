@@ -1,16 +1,17 @@
 #!/usr/bin/env ruby
 
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w(.. lib)))
+
+require "heel"
+
 # Split arguments by "--" if its there, we'll recombine them later
 argv = ARGV.dup
 
 # Fast path the version of Vagrant
 if argv.include?("-v") || argv.include?("--version")
-  require_relative "../lib/heel/version"
   puts "Heelbot #{Heel::VERSION}"
   exit 0
 end
-
-require_relative "../lib/heel"
 
 cmd = Heel::Command.new(argv)
 cmd.parse_cmd
