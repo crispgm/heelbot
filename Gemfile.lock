@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heelbot (1.0.0)
+    heelbot (2.0.0)
       liquid
       mail
       os
