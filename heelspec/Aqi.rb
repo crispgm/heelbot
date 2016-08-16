@@ -23,7 +23,7 @@ module Heelspec
       if @city == nil
         exit 1
       end
-      body = query(@city)
+      body = query(@city.strip)
       parse(body)
     end
 

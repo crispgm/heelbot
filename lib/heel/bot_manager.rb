@@ -36,6 +36,10 @@ module Heel
       puts @bot.helptext
     end
 
+    def get_triggers_of_bot
+      @bot.triggers
+    end
+
     def info_bot(bot_name)
       init_bot(bot_name)
       puts "Name:     #{bot_name}"
