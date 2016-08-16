@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# heels is the Heel Server
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w(.. lib)))
+
+require "heel"
+
+# Split arguments by "--" if its there, we'll recombine them later
+argv = ARGV.dup
+
+# Fast path the version of Vagrant
+if argv.include?("-v") || argv.include?("--version")
+  puts "Heelserver #{Heel::VERSION}"
+  exit 0
+end
+
+server = Heel::Server.new(argv)
+server.serve

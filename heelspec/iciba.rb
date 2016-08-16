@@ -9,12 +9,13 @@ module Heelspec
     API_URL = "http://dict-co.iciba.com/api/dictionary.php".freeze
 
     def initialize
-      @bot_name     = "Iciba Dictionary"
-      @bot_version  = "1.0.0"
-      @bot_summary  = "Query online ICIBA for you"
-      @bot_author   = "David Zhang"
-      @bot_license  = "MIT"
-      @bot_helptext = "iciba WORD\t\tQuery WORD\niciba WORD --say\tQuery and say WORD"
+      @name     = "Iciba Dictionary"
+      @version  = "1.0.0"
+      @summary  = "Query online ICIBA for you"
+      @author   = "David Zhang"
+      @license  = "MIT"
+      @helptext = "iciba WORD\t\tQuery WORD\niciba WORD --say\tQuery and say WORD"
+      @triggers = ["!iciba"]
     end
 
     def run(cmd)

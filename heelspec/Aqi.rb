@@ -9,12 +9,13 @@ module Heelspec
     API_URL = "http://apis.baidu.com/apistore/aqiservice/aqi".freeze
 
     def initialize
-      @bot_name     = "AQI Query"
-      @bot_version  = "1.0.0"
-      @bot_summary  = "Query realtime Air Quality Index"
-      @bot_author   = "David Zhang"
-      @bot_license  = "MIT"
-      @bot_helptext = "aqi city_name"
+      @name     = "AQI Query"
+      @version  = "1.0.0"
+      @summary  = "Query realtime Air Quality Index"
+      @author   = "David Zhang"
+      @license  = "MIT"
+      @helptext = "aqi city_name"
+      @triggers = ["!aqi"]
     end
 
     def run(cmd)

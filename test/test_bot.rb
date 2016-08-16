@@ -7,12 +7,13 @@ class TestBot < Minitest::Test
   end
 
   def test_init
-    assert_equal("Hello World", @bot.bot_name)
-    assert_equal("1.0.0", @bot.bot_version)
-    assert_equal("Print Hello World", @bot.bot_summary)
-    assert_equal("David Zhang", @bot.bot_author)
-    assert_equal("MIT", @bot.bot_license)
-    assert_equal("", @bot.bot_helptext)
+    assert_equal("Hello World", @bot.name)
+    assert_equal("1.0.0", @bot.version)
+    assert_equal("Print Hello World", @bot.summary)
+    assert_equal("David Zhang", @bot.author)
+    assert_equal("MIT", @bot.license)
+    assert_equal("", @bot.helptext)
+    assert_equal(["!hw", "!helloworld"], @bot.triggers)
   end
 
   def test_get_param

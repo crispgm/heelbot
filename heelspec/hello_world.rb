@@ -1,12 +1,13 @@
 module Heelspec
   class HelloWorld < Heel::Bot
     def initialize
-      @bot_name     = "Hello World"
-      @bot_version  = "1.0.0"
-      @bot_summary  = "Print Hello World"
-      @bot_author   = "David Zhang"
-      @bot_license  = "MIT"
-      @bot_helptext = ""
+      @name     = "Hello World"
+      @version  = "1.0.0"
+      @summary  = "Print Hello World"
+      @author   = "David Zhang"
+      @license  = "MIT"
+      @helptext = ""
+      @triggers = ["!hw", "!helloworld"]
     end
 
     def run(cmd)

@@ -4,12 +4,13 @@ module Heelspec
     require "liquid"
 
     def initialize
-      @bot_name = "Mail Template Generator"
-      @bot_version = "2.0.0"
-      @bot_summary  = "Generate email with group members and Liquid template"
-      @bot_author   = "David Zhang"
-      @bot_license  = "MIT"
-      @bot_helptext = "mail_template group_name template_name"
+      @name = "Mail Template Generator"
+      @version = "2.0.0"
+      @summary  = "Generate email with group members and Liquid template"
+      @author   = "David Zhang"
+      @license  = "MIT"
+      @helptext = "mail_template group_name template_name"
+      @triggers = []
     end
 
     def run(cmd)

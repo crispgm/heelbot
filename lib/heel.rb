@@ -2,6 +2,7 @@ module Heel
 
   # Main Funcs
   require "heel/command"
+  require "heel/server"
   require "heel/bot"
   require "heel/bot_manager"
 
