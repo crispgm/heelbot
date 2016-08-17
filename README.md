@@ -2,8 +2,8 @@
 
 [![Join the chat at https://gitter.im/crispgm/heelbot](https://badges.gitter.im/crispgm/heelbot.svg)](https://gitter.im/crispgm/heelbot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
-[![Code Climate](https://codeclimate.com/github/crispgm/heelbot/badges/gpa.svg)](https://codeclimate.com/github/crispgm/heelbot)
 [![](https://api.travis-ci.org/crispgm/heelbot.svg)](https://travis-ci.org/crispgm/heelbot)
+[![Code Climate](https://codeclimate.com/github/crispgm/heelbot/badges/gpa.svg)](https://codeclimate.com/github/crispgm/heelbot)
 [![Test Coverage](https://codeclimate.com/github/crispgm/heelbot/badges/coverage.svg)](https://codeclimate.com/github/crispgm/heelbot/coverage)
 
 ## Introduction
@@ -19,27 +19,59 @@ cd heelbot
 
 bundle install
 
-bundle exec bin/heel --version
+bundle exec exe/heel --version
 ```
 
 ## Usage
 
+### Web Mode
+
+Start server:
+
+```
+bundle exec exe/heels --port=9999
+```
+
+Query with URL: http://localhost:9999/heels/status
+
+which returns:
+
+```
+{
+    "status":"listening",
+    "version":"2.0.0",
+    "time":1471451121
+}
+```
+
+Query a bot with msg: http://localhost:9999/heels/query?msg=!hw%20hello,world
+
+which returns:
+
+```
+{
+    "text":"hello,world"
+}
+
+### Console Mode
+
 ```
 # List All Bots
-bundle exec bin/heel bot list
+bundle exec exe/heel bot list
 
 # Help of Bot
-bundle exec bin/heel help BOT_NAME
+bundle exec exe/heel help BOT_NAME
 
 # Info of Bot
-bundle exec bin/heel info BOT_NAME
+bundle exec exe/heel info BOT_NAME
 
 # Run Bot
-bundle exec bin/heel run BOT_NAME
+bundle exec exe/heel run BOT_NAME
 ```
 
 ## In-house Bots
 
+* RIO 2016 Olympic Games Medal List
 * Group Members
 * Mail Template
 * iCiba Online Dictionary
@@ -56,12 +88,13 @@ bundle exec bin/heel run BOT_NAME
     module Heelspec
       class HelloWorld < Heel::Bot
         def initialize
-          @bot_name     = "Hello World"
-          @bot_version  = "1.0.0"
-          @bot_summary  = "Print Hello World"
-          @bot_author   = "David Zhang"
-          @bot_license  = "MIT"
-          @bot_helptext = ""
+          @name     = "Hello World"
+          @version  = "1.0.0"
+          @summary  = "Print Hello World"
+          @author   = "David Zhang"
+          @license  = "MIT"
+          @helptext = ""
+          @triggers = ["!hw"]
         end
 
         def run(cmd)
@@ -81,7 +114,7 @@ bundle exec bin/heel run BOT_NAME
 3. Run the bot
 
     ```
-    bundle exec bin/heel run hello_world "hello, world"
+    bundle exec exe/heel run hello_world "hello, world"
     ```
 
     The result is:
