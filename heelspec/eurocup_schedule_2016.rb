@@ -1,4 +1,5 @@
 module Heelspec
+  # rubocop:disable duplication
   class EurocupSchedule2016 < Heel::Bot
     def initialize
       @name     = "Euro Cup Schedule 2016"
@@ -10,6 +11,7 @@ module Heelspec
       @triggers = []
     end
 
+    # rubocop:disable Lint/UnusedMethodArgument
     def run(cmd)
       url = "https://gist.github.com/crispgm/1eedbc85b23470a5b9ca81ac3072f8f1"
       if Heel::Util.console_mode?

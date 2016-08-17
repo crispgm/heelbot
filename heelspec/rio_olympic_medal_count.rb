@@ -14,6 +14,7 @@ module Heelspec
       @triggers = ["!rio"]
     end
 
+    # rubocop:disable Lint/UnusedMethodArgument
     def run(cmd)
       page = Nokogiri::HTML(open("https://www.rio2016.com/en/medal-count-country"))
       page.encoding = "UTF-8"

@@ -83,6 +83,7 @@ module Heelspec
       @group_role = params[1]
     end
 
+    # rubocop:disable Lint/UnusedMethodArgument
     def render(context)
       # call GroupMembers
       require_relative "./group_members"

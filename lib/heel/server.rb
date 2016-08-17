@@ -43,7 +43,7 @@ module Heel
           @triggers = Hash.new
           args = params["args"]
           @bot_manager.bot_list.each do |bot|
-            bot_instance = @bot_manager.init_bot(bot["Name"])
+            @bot_manager.init_bot(bot["Name"])
             bot_triggers = @bot_manager.get_triggers_of_bot
             if !bot_triggers.empty?
               bot_triggers.each do |trigger|

@@ -19,5 +19,6 @@ task :count do
   begin
     sh shell_cmd[0..-3]
   rescue
+    puts "Count Error."
   end
 end
