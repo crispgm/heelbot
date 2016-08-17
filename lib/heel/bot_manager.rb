@@ -33,17 +33,22 @@ module Heel
 
     def help_bot(bot_name)
       init_bot(bot_name)
-      puts @bot.bot_helptext
+      puts @bot.helptext
+    end
+
+    def get_triggers_of_bot
+      @bot.triggers
     end
 
     def info_bot(bot_name)
       init_bot(bot_name)
       puts "Name:     #{bot_name}"
-      puts "Version:  #{@bot.bot_version}"
-      puts "Summary:  #{@bot.bot_summary}"
-      puts "Author:   #{@bot.bot_author}"
-      puts "License:  #{@bot.bot_license}"
-      puts "Helptext: #{@bot.bot_helptext}"
+      puts "Version:  #{@bot.version}"
+      puts "Summary:  #{@bot.summary}"
+      puts "Author:   #{@bot.author}"
+      puts "License:  #{@bot.license}"
+      puts "Helptext: #{@bot.helptext}"
+      puts "Triggers: #{@bot.triggers.join ', '}"
     end
 
     private

@@ -1,11 +1,12 @@
 module Heel
   class Bot
-    attr_accessor :bot_name
-    attr_accessor :bot_version
-    attr_accessor :bot_summary
-    attr_accessor :bot_author
-    attr_accessor :bot_license
-    attr_accessor :bot_helptext
+    attr_accessor :name
+    attr_accessor :version
+    attr_accessor :summary
+    attr_accessor :author
+    attr_accessor :license
+    attr_accessor :helptext
+    attr_accessor :triggers
 
     def get_param(cmd, index)
       begin

@@ -5,12 +5,13 @@ module Heelspec
     require "nokogiri"
 
     def initialize
-      @bot_name     = "Medal Count of RIO 2016 Olympic Games"
-      @bot_version  = "1.0.0"
-      @bot_summary  = "Query realtime medal count of RIO 2016 Olympic Games"
-      @bot_author   = "David Zhang"
-      @bot_license  = "MIT"
-      @bot_helptext = ""
+      @name     = "Medal Count of RIO 2016 Olympic Games"
+      @version  = "1.0.0"
+      @summary  = "Query realtime medal count of RIO 2016 Olympic Games"
+      @author   = "David Zhang"
+      @license  = "MIT"
+      @helptext = ""
+      @triggers = ["!rio"]
     end
 
     def run(cmd)

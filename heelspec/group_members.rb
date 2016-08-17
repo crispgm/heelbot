@@ -4,8 +4,13 @@ module Heelspec
     attr_reader :groups
 
     def initialize
-      @bot_name = "Mail Group Manager"
-      @bot_version = "1.0.0"
+      @name     = "Mail Group Manager"
+      @version  = "1.0.0"
+      @summary  = "Mail Group Manager"
+      @author   = "David Zhang"
+      @license  = "MIT"
+      @helptext = "group_members [group_name]"
+      @triggers = ["!gm"]
 
       @groups = {
         "dev" => {

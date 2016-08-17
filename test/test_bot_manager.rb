@@ -47,6 +47,7 @@ Summary:  Print Hello World
 Author:   David Zhang
 License:  MIT
 Helptext: 
+Triggers: !hw, !helloworld
 INFO
     assert_output(bot_info) {
       @bot_manager.info_bot("hello_world")

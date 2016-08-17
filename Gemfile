@@ -3,12 +3,17 @@ gemspec
 
 $:.unshift File.expand_path("../lib", __FILE__)
 
-gem "sinatra"
-gem "mail"
-gem "liquid"
-gem "os"
-gem "json"
-gem "minitest"
-gem "nokogiri"
+group :runtime do
+  gem "sinatra"
+  gem "mail"
+  gem "liquid"
+  gem "os"
+  gem "json"
+  gem "nokogiri"
+end
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+group :test do
+  gem "minitest"
+  gem "rack-test"
+  gem "codeclimate-test-reporter", require: nil
+end

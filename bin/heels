@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# heels is the Heel Server
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w(.. lib)))
 
@@ -9,11 +10,11 @@ argv = ARGV.dup
 
 # Fast path the version of Vagrant
 if argv.include?("-v") || argv.include?("--version")
-  puts "Heelbot #{Heel::VERSION}"
+  puts "Heelserver #{Heel::VERSION}"
   exit 0
 end
 
-$runtime_mode = Heel::Util::RUNTIME_CONSOLE
+$runtime_mode = Heel::Util::RUNTIME_WEB
 
-cmd = Heel::Command.new(argv)
-cmd.parse_cmd
+server = Heel::Server.new(argv)
+server.serve
