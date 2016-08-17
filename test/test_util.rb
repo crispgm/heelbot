@@ -17,4 +17,10 @@ class TestUtil < Minitest::Test
     $runtime_mode = Heel::Util::RUNTIME_CONSOLE
     assert_equal(true, Heel::Util.console_mode?)
   end
+
+  def test_nil_global_runtime
+    $runtime_mode = nil
+    assert_equal(false, Heel::Util.console_mode?)
+    assert_equal(false, Heel::Util.web_mode?)
+  end
 end
