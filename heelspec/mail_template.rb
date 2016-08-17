@@ -10,12 +10,12 @@ module Heelspec
       @author   = "David Zhang"
       @license  = "MIT"
       @helptext = "mail_template group_name template_name"
-      @triggers = []
+      @triggers = ["!mt"]
     end
 
     def run(cmd)
       if cmd.length == 0
-        puts "Error: Nil template name"
+        puts "Error: nil template name"
         return
       end
 
@@ -34,8 +34,10 @@ module Heelspec
       @mail.body = @body
 
       mail_to = @mail.build_as_mailto
-      p mail_to
-      Heel::Shell.open "\"#{mail_to}\""
+      puts mail_to
+      if Heel::Util.console_mode?
+        Heel::Shell.open "\"#{mail_to}\""
+      end
     end
 
     private

@@ -13,5 +13,7 @@ if argv.include?("-v") || argv.include?("--version")
   exit 0
 end
 
+$runtime_mode = Heel::Util::RUNTIME_CONSOLE
+
 cmd = Heel::Command.new(argv)
 cmd.parse_cmd

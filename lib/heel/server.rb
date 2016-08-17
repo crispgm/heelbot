@@ -69,11 +69,17 @@ module Heel
               # build response
               resp = Heel::Response.new
               resp.body = {
-                :text => output
+                :text => output.strip
               }
               return resp.as_json
             end
           end
+
+          resp = Heel::Response.new
+          resp.body = {
+            :error => "No triggers matched"
+          }
+          resp.as_json
         end
       end
 

@@ -11,7 +11,10 @@ module Heelspec
     end
 
     def run(cmd)
-      Heel::Shell.open "http://www.uefa.com/uefaeuro/season=2016/matches/index.html"
+      url = "http://www.uefa.com/uefaeuro/season=2016/matches/index.html"
+      if Heel::Util.console_mode?
+        Heel::Shell.open url
+      end
     end
   end
 end

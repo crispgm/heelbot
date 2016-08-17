@@ -14,5 +14,7 @@ if argv.include?("-v") || argv.include?("--version")
   exit 0
 end
 
+$runtime_mode = Heel::Util::RUNTIME_WEB
+
 server = Heel::Server.new(argv)
 server.serve

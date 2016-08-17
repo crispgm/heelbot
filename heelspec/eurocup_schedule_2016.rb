@@ -11,7 +11,10 @@ module Heelspec
     end
 
     def run(cmd)
-      Heel::Shell.open "https://gist.github.com/crispgm/1eedbc85b23470a5b9ca81ac3072f8f1"
+      url = "https://gist.github.com/crispgm/1eedbc85b23470a5b9ca81ac3072f8f1"
+      if Heel::Util.console_mode?
+        Heel::Shell.open url
+      end
     end
   end
 end
