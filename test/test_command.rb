@@ -34,6 +34,15 @@ OUT
     }
   end
 
+  def test_parse_msg2
+    argv = ['msg', '!helloworld', 'helloworld']
+    @cmd = Heel::Command.new(argv)
+    output = "helloworld\n"
+    assert_output(output) {
+      assert_equal("msg", @cmd.parse_cmd)
+    }
+  end
+
   def test_parse_info
     argv = ['info', 'hello_world']
     @cmd = Heel::Command.new(argv)
