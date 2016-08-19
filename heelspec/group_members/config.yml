@@ -1,0 +1,16 @@
+dev:
+  description: Development Integration Group
+  members: zhangwanlong,cuishichao,yunting,miaodongdong,dengxi,hanpeng03,hezhipeng
+  managers: luhua01,hejian01
+bravo:
+  description: Bravo Team
+  members: zhangwanlong,cuishichao,yunting,miaodongdong,dengxi
+  managers: luhua01
+tech_core:
+  description: MSBU Tech Core
+  members: zhangwanlong,dengxi,hanpeng03,wanghuaiqing
+  managers: luhua01,hejian01
+tech:
+  description: MSBU Tech
+  members: zhangwanlong,dengxi,hanpeng03,wanghuaiqing,liurenfei,wuyan08,hezhipeng,hejie03
+  managers: luhua01,hejian01

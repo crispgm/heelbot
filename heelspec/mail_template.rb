@@ -95,8 +95,7 @@ module Heelspec
         false
       end
 
-      role_symbol = @group_role.to_sym
-      output = info[role_symbol].join "@baidu.com;"
+      output = info[@group_role].join "@baidu.com;"
       (output << "@baidu.com")
     end
   end

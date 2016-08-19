@@ -12,28 +12,8 @@ module Heelspec
       @helptext = "group_members [group_name]"
       @triggers = ["!gm"]
 
-      @groups = {
-        "dev" => {
-          :description => "Development Integration Group",
-          :members => ["zhangwanlong", "cuishichao", "yunting", "miaodongdong", "dengxi", "hanpeng03", "hezhipeng"],
-          :managers => ["luhua01", "hejian01"]
-        },
-        "bravo" => {
-          :description => "Bravo Team",
-          :members => ["zhangwanlong", "cuishichao", "yunting", "miaodongdong", "dengxi"],
-          :managers => ["luhua01"]
-        },
-        "tech_core" => {
-          :description => "MSBU Tech Core",
-          :members => ["zhangwanlong", "dengxi", "hanpeng03", "wanghuaiqing"],
-          :managers => ["luhua01", "hejian01"]
-        },
-        "tech" => {
-          :description => "MSBU Tech",
-          :members => ["zhangwanlong", "dengxi", "hanpeng03", "wanghuaiqing", "liurenfei", "wuyan08", "hezhipeng", "hejie03", "yanglong01"],
-          :managers => ["luhua01", "hejian01"]
-        }
-      }
+      read_yml
+      expand_names
     end
 
     def run(cmd)
@@ -73,9 +53,9 @@ module Heelspec
     end
 
     def print_group_info(info)
-      puts info[:description]
-      puts info[:members].join ","
-      puts info[:managers].join ","
+      puts info["description"]
+      puts info["members"].join ","
+      puts info["managers"].join ","
     end
 
     def get_group(group_name)
@@ -83,6 +63,24 @@ module Heelspec
         @groups[group_name]
       else
         false
+      end
+    end
+
+    private
+    def read_yml
+      yml_path = "heelspec/group_members/config.yml"
+
+      if File.exist? yml_path
+        @groups = YAML.load_file yml_path
+      end
+    end
+
+    def expand_names
+      if @groups != nil
+        @groups.each do |key, group|
+          group["members"] = group["members"].split ","
+          group["managers"] = group["managers"].split ","
+        end
       end
     end
   end
