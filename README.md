@@ -70,6 +70,21 @@ bundle exec exe/heel info BOT_NAME
 bundle exec exe/heel run BOT_NAME
 ```
 
+#### Triggers in Console Mode
+
+As trigger texts are enabled for web bots, we introduce a new subcommand - `msg`. We can use it to trigger bots locally with simple messages.
+
+```
+# msg command
+bundle exec exe/heel msg \!hw hellworld
+```
+
+Output:
+
+```
+helloworld
+```
+
 ## In-house Bots
 
 * RIO 2016 Olympic Games Medal List
