@@ -33,8 +33,8 @@ DESC
         list
         "list"
       elsif argv[0].eql? "msg"
-        trigger_msg(argv.slice(1, argv.length))
-        "msg"
+        triggered_bot = trigger_msg(argv.slice(1, argv.length))
+        "msg, #{triggered_bot}"
       elsif argv[0].eql? "help"
         if (argv.length <= 1)
           usage
@@ -89,6 +89,7 @@ DESC
         if argv[0].start_with? trigger_text
           # triggered, run bot
           @bot_manager.run_bot(bot_name, argv.slice(1, argv.length))
+          return bot_name
         end
       end
     end
