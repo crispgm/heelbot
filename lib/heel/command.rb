@@ -26,48 +26,61 @@ Bot
 DESC
 
       puts description
+      "usage"
     end
 
     def parse_cmd
-      if argv[0].eql? "list"
+      case argv[0]
+      when "list"
         list
-        "list"
-      elsif argv[0].eql? "msg"
-        triggered_bot = @bot_manager.trigger_bot(argv.slice(1, argv.length).join(" "), {})
-        "msg, #{triggered_bot}"
-      elsif argv[0].eql? "help"
-        if (argv.length <= 1)
-          usage
-          return "usage"
-        end
-        @bot_manager.help_bot(argv[1])
-        "help"
-      elsif argv[0].eql? "run"
-        if (argv.length <= 1)
-          usage
-          return "usage"
-        end
-        @bot_manager.run_bot(argv[1], argv.slice(2, argv.length))
-        "run"
-      elsif argv[0].eql? "info"
-        if (argv.length <= 1)
-          usage
-          return "usage"
-        end
-        @bot_manager.info_bot(argv[1])
-        "info"
+      when "msg"
+        msg(argv)
+      when "help"
+        help(argv)
+      when "run"
+        run(argv)
+      when "info"
+        info(argv)
       else
         usage
-        "usage"
       end
     end
 
     private
 
+    def msg(argv)
+      return usage if argv.length <= 1
+
+      triggered_bot = @bot_manager.trigger_bot(argv.slice(1, argv.length).join(" "), {})
+      "msg, #{triggered_bot}"
+    end
+
+    def run(argv)
+      return usage if argv.length <= 1
+
+      @bot_manager.run_bot(argv[1], argv.slice(2, argv.length))
+      "run"
+    end
+
+    def help(argv)
+      return usage if argv.length <= 1
+
+      @bot_manager.help_bot(argv[1])
+      "help"
+    end
+
+    def info(argv)
+      return usage if argv.length <= 1
+
+      @bot_manager.info_bot(argv[1])
+      "info"
+    end
+
     def list
       @bot_manager.bot_list.each do |bot|
         puts "#{bot["Name"]}"
       end
+      "list"
     end
   end
 end
