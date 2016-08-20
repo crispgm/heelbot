@@ -14,6 +14,7 @@ class TestBotManager < Minitest::Test
     assert_equal(@bot_manager.bot_list[4]["Name"], "iciba")
     assert_equal(@bot_manager.bot_list[5]["Name"], "aqi")
     assert_equal(@bot_manager.bot_list[6]["Name"], "hello_world")
+    assert_equal(false, @bot_manager.triggers_loaded)
   end
 
   def test_init_nil_bot
@@ -25,6 +26,12 @@ class TestBotManager < Minitest::Test
   def test_init_bot
     @bot_manager.init_bot("hello_world")
     assert_equal(true, @bot_manager.bot_instance["hello_world"].is_a?(Heel::Bot))
+  end
+
+  def test_trigger_bot
+    triggered_name = @bot_manager.trigger_bot("!hw hello", {})
+    assert_equal("hello_world", triggered_name)
+    assert_equal(false, @bot_manager.triggers_loaded)
   end
 
   def test_run_bot
