@@ -24,7 +24,7 @@ class TestBotManager < Minitest::Test
 
   def test_init_bot
     @bot_manager.init_bot("hello_world")
-    assert_equal(true, @bot_manager.bot.is_a?(Heel::Bot))
+    assert_equal(true, @bot_manager.bot_instance["hello_world"].is_a?(Heel::Bot))
   end
 
   def test_run_bot
@@ -41,7 +41,7 @@ class TestBotManager < Minitest::Test
 
   def test_info_bot
     bot_info = <<INFO
-Name:     hello_world
+Name:     Hello World
 Version:  1.0.0
 Summary:  Print Hello World
 Author:   David Zhang

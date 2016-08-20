@@ -33,7 +33,7 @@ DESC
         list
         "list"
       elsif argv[0].eql? "msg"
-        triggered_bot = trigger_msg(argv.slice(1, argv.length))
+        triggered_bot = @bot_manager.trigger_bot(argv.slice(1, argv.length).join(" "), {})
         "msg, #{triggered_bot}"
       elsif argv[0].eql? "help"
         if (argv.length <= 1)
@@ -69,30 +69,5 @@ DESC
         puts "#{bot["Name"]}"
       end
     end
-
-    def trigger_msg(argv)
-      @triggers = Hash.new
-      @bot_manager.bot_list.each do |bot|
-        @bot_manager.init_bot(bot["Name"])
-        bot_triggers = @bot_manager.get_triggers_of_bot
-        if !bot_triggers.empty?
-          bot_triggers.each do |trigger|
-            if @triggers.has_key? trigger
-              puts "Conflict: Trigger #{trigger} is existed."
-            end
-            @triggers[trigger] = bot["Name"]
-          end
-        end
-      end
-
-      @triggers.each do |trigger_text, bot_name|
-        if argv[0].start_with? trigger_text
-          # triggered, run bot
-          @bot_manager.run_bot(bot_name, argv.slice(1, argv.length))
-          return bot_name
-        end
-      end
-    end
-
   end
 end

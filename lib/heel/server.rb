@@ -20,47 +20,15 @@ module Heel
   class BotServlet < WEBrick::HTTPServlet::AbstractServlet
     def do_GET request, response
       @bot_manager = Heel::BotManager.new
-      @triggers = Hash.new
       args = request.query["msg"]
-      @bot_manager.bot_list.each do |bot|
-        @bot_manager.init_bot(bot["Name"])
-        bot_triggers = @bot_manager.get_triggers_of_bot
-        if !bot_triggers.empty?
-          bot_triggers.each do |trigger|
-            if @triggers.has_key? trigger
-              puts "Conflict: Trigger #{trigger} is existed."
-            end
-            @triggers[trigger] = bot["Name"]
-          end
-        end
-      end
 
-      @triggers.each do |trigger_text, bot_name|
-        if args.start_with? trigger_text
-          # triggered
-          argv = args.split(trigger_text).at(1)
-          if argv != nil
-            argv = argv.split
-          end
-          # run bot
-          output = Heel::Util.capture_stdout do
-            @bot_manager.run_bot(bot_name, argv)
-          end
-          # build response
-          resp = Heel::Response.new
-          resp.body = {
-            :text => output.strip
-          }
-          response.status = 200
-          response['Content-Type'] = "application/json"
-          response.body = resp.as_json
-          return
-        end
+      output = Heel::Util.capture_stdout do
+        @bot_manager.trigger_bot(args, request)
       end
 
       resp = Heel::Response.new
       resp.body = {
-        :error => "No triggers matched"
+        :text => output.strip
       }
 
       response.status = 200
