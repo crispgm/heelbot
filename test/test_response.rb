@@ -25,6 +25,6 @@ class TestResponse < Minitest::Test
   end
 
   def test_as_raw
-    assert_equal({:input => "default"}, @resp.body)
+    assert_equal({:input => "default"}, @resp.as_raw)
   end
 end
