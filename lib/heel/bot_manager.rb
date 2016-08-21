@@ -3,14 +3,14 @@ module Heel
 
     require "yaml"
 
-    BOT_CONF_NAME = "heelspec/bots.yaml"
+    BOT_CONF_NAME = "heelspec/bots.yaml".freeze
 
-    @new_conf = false
-
+    attr_reader :conf_path
     attr_reader :bot_list, :bot_instance
     attr_reader :triggers_loaded
 
-    def initialize
+    def initialize(conf_path = BOT_CONF_NAME)
+      @conf_path = conf_path
       @bot_list ||= []
       @bot_instance = Hash.new
       @triggers_loaded = false
@@ -101,12 +101,10 @@ module Heel
     end
 
     def load_bots
-      if File.exist? BOT_CONF_NAME
-        @new_conf = false;
-        @bot_list = YAML.load_file BOT_CONF_NAME
+      if File.exist? @conf_path
+        @bot_list = YAML.load_file @conf_path
       else
-        @new_conf = true
-        f = File.new(BOT_CONF_NAME, "w")
+        f = File.new(@conf_path, "w")
         f.close
       end
     end
