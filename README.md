@@ -93,8 +93,7 @@ helloworld
 * iCiba Online Dictionary
 * Air Quality Index
 * Hello World (Sample Bot)
-* Eurocup 2016 Schedule (deprecated)
-* Eurocup 2016 Results (deprecated)
+* Eurocup 2016 Assistant (deprecated)
 
 ## Build Bots
 
