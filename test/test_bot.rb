@@ -21,6 +21,10 @@ class TestBot < Minitest::Test
     assert_output("Error: Cannot get param #0\n") {
       assert_equal(nil, @bot.get_param(cmd, 0))
     }
+    cmd = [""]
+    assert_output("Error: Cannot get param #0\n") {
+      assert_equal(nil, @bot.get_param(cmd, 0))
+    }
     cmd = ["aaa"]
     assert_equal(cmd[0], @bot.get_param(cmd, 0))
   end
