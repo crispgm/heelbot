@@ -1,8 +1,7 @@
 - Name: group_members
 - Name: mail_template
-- Name: eurocup_schedule_2016
-- Name: eurocup_results_2016
+- Name: eurocup_2016
 - Name: iciba
 - Name: aqi
 - Name: hello_world
-- Name: rio_olympic_medal_count
+- Name: rio_2016

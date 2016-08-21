@@ -13,12 +13,11 @@ class TestCommand < Minitest::Test
     output = <<OUT
 group_members
 mail_template
-eurocup_schedule_2016
-eurocup_results_2016
+eurocup_2016
 iciba
 aqi
 hello_world
-rio_olympic_medal_count
+rio_2016
 OUT
     assert_output(output) {
       assert_equal("list", @cmd.parse_cmd)

@@ -1,5 +1,5 @@
 module Heelspec
-  class RioOlympicMedalCount < Heel::Bot
+  class Rio2016 < Heel::Bot
 
     require "open-uri"
     require "nokogiri"
