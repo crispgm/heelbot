@@ -16,4 +16,5 @@ group :test do
   gem "minitest"
   gem "codeclimate-test-reporter", require: nil
   gem "rubocop"
+  gem "shoulda-context"
 end

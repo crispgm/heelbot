@@ -21,7 +21,8 @@ module Heelspec
     def run(cmd)
       @city = get_param(cmd, 0)
       if @city == nil
-        exit 1
+        puts "Error: no city input"
+        return
       end
       body = query(@city.strip)
       parse(body)
@@ -37,7 +38,12 @@ module Heelspec
 
     def parse(body)
       parsed = JSON.parse(body)
-      puts "AQI of #{@city} is #{parsed["retData"]["aqi"]}"
+
+      if !parsed["retData"].empty?
+        puts "AQI of #{@city} is #{parsed["retData"]["aqi"]}."
+      else
+        puts "AQI of #{@city} is not found."
+      end
     end
   end
 end

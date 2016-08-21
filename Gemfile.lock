@@ -43,6 +43,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    shoulda-context (1.2.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -71,6 +72,7 @@ DEPENDENCIES
   os
   rake
   rubocop
+  shoulda-context
   webrick
 
 BUNDLED WITH
