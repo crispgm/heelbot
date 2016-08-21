@@ -2,7 +2,7 @@ module Heelspec
   class Aqi < Heel::Bot
 
     require "open-uri"
-    require "CGI"
+    require "cgi"
     require "json"
 
     API_KEY = "fb45a134a153bbc65dddf61682da581c".freeze

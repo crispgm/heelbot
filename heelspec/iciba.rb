@@ -2,7 +2,7 @@ module Heelspec
   class Iciba < Heel::Bot
 
     require "open-uri"
-    require "CGI"
+    require "cgi"
     require "rexml/document"
 
     API_KEY = "F80B8F286E263D59F84CCE5FEB6F92C3".freeze
