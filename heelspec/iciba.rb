@@ -8,6 +8,8 @@ module Heelspec
     API_KEY = "F80B8F286E263D59F84CCE5FEB6F92C3".freeze
     API_URL = "http://dict-co.iciba.com/api/dictionary.php".freeze
 
+    attr_reader :spell_flag
+
     def initialize
       @name     = "Iciba Dictionary"
       @version  = "1.0.0"
@@ -21,16 +23,17 @@ module Heelspec
     def run(cmd)
       word = get_param(cmd, 0)
       if word == nil
-        exit 1
+        puts "Error: no word input"
+        return
       end
       body = query(word)
-      spell_flag = false
+      @spell_flag = false
       if cmd[1] != nil && cmd[1].eql?("--say")
-        spell_flag = true
+        @spell_flag = true
       end
       parse(body)
 
-      if spell_flag
+      if @spell_flag
         Heel::Shell.sh "say #{cmd[0]}"
       end
     end
