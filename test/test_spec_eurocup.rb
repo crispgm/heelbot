@@ -1,5 +1,5 @@
 require "helper"
-require_relative "../heelspec/aqi"
+require_relative "../heelspec/eurocup_2016"
 
 class TestSpecEurocup < Minitest::Test
   context "heelspec of Euro Cup" do
