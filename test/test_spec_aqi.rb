@@ -18,9 +18,11 @@ class TestSpecAqi < Minitest::Test
     end
 
     should "show aqi if validate city input" do
-      assert_output("AQI of 北京 is 90.\n") {
+      output_prefix = "AQI of 北京 is"
+      output = Heel::Util.capture_stdout do
         @klass.run(["北京"])
-      }
+      end
+      assert_equal(true, output.start_with?(output_prefix))
     end
 
     should "show aqi not found if inexisted city input" do
