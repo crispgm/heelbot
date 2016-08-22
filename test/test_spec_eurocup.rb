@@ -11,7 +11,7 @@ class TestSpecEurocup < Minitest::Test
       assert_equal("Euro Cup 2016", @klass.name)
     end
 
-    should "show nothing after running" do
+    should "show nothing or raise error on non-mac system" do
       require "os"
 
       if OS.mac?
@@ -19,7 +19,7 @@ class TestSpecEurocup < Minitest::Test
           @klass.run([])
         }
       else
-        assert_raise Heel::ShellOpenError do
+        assert_raises Heel::ShellOpenError do
           @klass.run([])
         end
       end
