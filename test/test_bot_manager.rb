@@ -2,17 +2,16 @@ require "helper"
 
 class TestBotManager < Minitest::Test
   def setup
-    @bot_manager = Heel::BotManager.new
+    @bot_manager = Heel::BotManager.new("test/heelspec")
   end
 
   def test_init
-    assert_equal(7, @bot_manager.bot_list.size)
-    assert_equal("group_members", @bot_manager.bot_list[0]["Name"])
-    assert_equal("mail_template", @bot_manager.bot_list[1]["Name"])
-    assert_equal("eurocup_2016", @bot_manager.bot_list[2]["Name"])
-    assert_equal("iciba", @bot_manager.bot_list[3]["Name"])
-    assert_equal("aqi", @bot_manager.bot_list[4]["Name"])
-    assert_equal("hello_world", @bot_manager.bot_list[5]["Name"])
+    assert_equal("test/heelspec", @bot_manager.spec_path)
+    assert_equal("test/heelspec/bots.yml", @bot_manager.conf_path)
+    assert_equal("../../test/heelspec", @bot_manager.bots_path)
+    assert_equal(2, @bot_manager.bot_list.size)
+    assert_equal("hello_world", @bot_manager.bot_list[0]["Name"])
+    assert_equal("test_bot", @bot_manager.bot_list[1]["Name"])
     assert_equal(false, @bot_manager.triggers_loaded)
   end
 
@@ -28,17 +27,19 @@ class TestBotManager < Minitest::Test
   end
 
   def test_init_without_default_name
-    conf_path = "heelspec/inexisted.yml"
-    @bot_manager_without_default_name = Heel::BotManager.new(conf_path)
-    assert_equal(conf_path, @bot_manager_without_default_name.conf_path)
+    spec_path = "test/emptyspec"
+    @bot_manager_without_default_name = Heel::BotManager.new(spec_path)
+    assert_equal(spec_path, @bot_manager_without_default_name.spec_path)
     assert_equal([], @bot_manager_without_default_name.bot_list)
-    Heel::Shell.sh "rm #{conf_path}"
+    Heel::Shell.sh "rm #{spec_path}/bots.yml"
   end
 
   def test_trigger_bot
-    triggered_name = @bot_manager.trigger_bot("!hw hello", {})
-    assert_equal("hello_world", triggered_name)
-    assert_equal(false, @bot_manager.triggers_loaded)
+    assert_output("Conflict: Trigger !hw is existed.\nhello\n") {
+      triggered_name = @bot_manager.trigger_bot("!helloworld hello", {})
+      assert_equal("hello_world", triggered_name)
+      assert_equal(false, @bot_manager.triggers_loaded)
+    }
   end
 
   def test_run_bot

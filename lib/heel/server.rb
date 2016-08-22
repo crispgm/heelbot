@@ -19,7 +19,7 @@ module Heel
 
   class BotServlet < WEBrick::HTTPServlet::AbstractServlet
     def do_GET request, response
-      @bot_manager = Heel::BotManager.new
+      @bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
       args = request.query["msg"]
 
       output = Heel::Util.capture_stdout do

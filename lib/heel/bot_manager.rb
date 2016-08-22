@@ -3,14 +3,14 @@ module Heel
 
     require "yaml"
 
-    BOT_CONF_NAME = "heelspec/bots.yaml".freeze
-
-    attr_reader :conf_path
+    attr_reader :spec_path, :conf_path, :bots_path
     attr_reader :bot_list, :bot_instance
     attr_reader :triggers_loaded
 
-    def initialize(conf_path = BOT_CONF_NAME)
-      @conf_path = conf_path
+    def initialize(spec_path)
+      @spec_path = spec_path
+      @conf_path = "#{@spec_path}/bots.yml"
+      @bots_path = "../../#{@spec_path}"
       @bot_list ||= []
       @bot_instance = Hash.new
       @triggers_loaded = false
@@ -38,7 +38,7 @@ module Heel
     def init_bot(bot_name)
       if !@bot_instance.has_key? bot_name
         begin
-          require_relative "../../heelspec/#{bot_name}"
+          require_relative "#{@bots_path}/#{bot_name}"
         rescue LoadError
           puts "#{bot_name} not found"
           return
@@ -74,6 +74,12 @@ module Heel
         puts "License:  #{bot.license}"
         puts "Helptext: #{bot.helptext}"
         puts "Triggers: #{bot.triggers.join ', '}"
+      end
+    end
+
+    def list_bot
+      @bot_list.each do |bot|
+        puts "#{bot["Name"]}"
       end
     end
 

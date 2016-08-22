@@ -1,12 +1,14 @@
 module Heel
   class Command
 
+    DEFAULT_SPEC_PATH = "heelspec".freeze
+
     attr_reader :argv
     attr_reader :bot_manager
 
-    def initialize(argv)
+    def initialize(argv, spec_path = DEFAULT_SPEC_PATH)
       @argv = argv
-      @bot_manager = BotManager.new
+      @bot_manager = Heel::BotManager.new(spec_path)
     end
 
     def usage
@@ -77,9 +79,7 @@ DESC
     end
 
     def list
-      @bot_manager.bot_list.each do |bot|
-        puts "#{bot["Name"]}"
-      end
+      @bot_manager.list_bot
       "list"
     end
   end
