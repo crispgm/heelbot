@@ -11,17 +11,28 @@ class TestSpecEurocup < Minitest::Test
       assert_equal("Euro Cup 2016", @klass.name)
     end
 
-    should "show nothing or raise error on non-mac system" do
+    should "show nothing or raise error on non-mac system in console mode" do
       require "os"
+      $runtime_mode = Heel::Util::RUNTIME_CONSOLE
 
       if OS.mac?
-        assert_output(nil) {
+        assert_output nil do
           @klass.run([])
-        }
+        end
       else
         assert_raises Heel::ShellOpenError do
           @klass.run([])
         end
+      end
+    end
+
+    should "show output in web mode" do
+      require "os"
+      $runtime_mode = Heel::Util::RUNTIME_WEB
+
+      output = "Schedule: #{Heelspec::Eurocup2016::SCHEDULE_URL}, Result: #{Heelspec::Eurocup2016::RESULT_URL}\n"
+      assert_output output do
+        @klass.run([])
       end
     end
   end

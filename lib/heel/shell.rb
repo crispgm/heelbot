@@ -11,7 +11,7 @@ module Heel
       if OS.mac?
         sh "open #{filename}"
       else
-        raise ShellOpenError, 'Cannot open in non-mac system'
+        raise ShellOpenError, "Cannot open in non-mac system"
       end
     end
   end
