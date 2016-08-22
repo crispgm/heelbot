@@ -12,9 +12,17 @@ class TestSpecEurocup < Minitest::Test
     end
 
     should "show nothing after running" do
-      assert_output(nil) {
-        @klass.run([])
-      }
+      require "os"
+
+      if OS.mac?
+        assert_output(nil) {
+          @klass.run([])
+        }
+      else
+        assert_raise ShellOpenError do
+          @klass.run([])
+        end
+      end
     end
   end
 end
