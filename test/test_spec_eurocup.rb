@@ -19,7 +19,7 @@ class TestSpecEurocup < Minitest::Test
           @klass.run([])
         }
       else
-        assert_raise ShellOpenError do
+        assert_raise Heel::ShellOpenError do
           @klass.run([])
         end
       end
