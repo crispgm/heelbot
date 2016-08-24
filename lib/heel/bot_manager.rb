@@ -21,7 +21,7 @@ module Heel
     def trigger_bot(raw_msg, raw_request = {})
       get_triggers
 
-      if raw_msg.empty?
+      if !raw_msg.is_a? String
         return nil, nil
       end
 

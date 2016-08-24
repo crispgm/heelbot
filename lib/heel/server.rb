@@ -26,10 +26,18 @@ module Heel
       handle_request request, response
     end
 
+    def get_query(query_string, key)
+      query_string.split("&").each do |query|
+        if query.start_with? "#{key}="
+          return query.split("=").at(1)
+        end
+      end
+    end
+
     def handle_request(request, response)
       bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
 
-      args = request.query["msg"]
+      args = get_query(request.query_string, "msg")
 
       bot_name, output = bot_manager.trigger_bot(args, request)
 
