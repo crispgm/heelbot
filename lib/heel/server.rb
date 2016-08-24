@@ -22,13 +22,11 @@ module Heel
       @bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
       args = request.query["msg"]
 
-      output = Heel::Util.capture_stdout do
-        @bot_manager.trigger_bot(args, request)
-      end
+      bot_name, output = @bot_manager.trigger_bot(args, request)
 
       resp = Heel::Response.new
       resp.body = {
-        :text => output.strip
+        :text => output
       }
 
       response.status = 200

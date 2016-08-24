@@ -28,9 +28,18 @@ module Heel
           if argv != nil
             cmd = argv.split
           end
+
+          output = ""
           # run bot
-          run_bot(bot_name, cmd, raw_request)
-          return bot_name
+          if Heel::Util.console_mode?
+            run_bot(bot_name, cmd, raw_request)
+          end
+          # serve bot
+          if Heel::Util.web_mode?
+            output = serve_bot(bot_name, raw_request)
+          end
+
+          return bot_name, output
         end
       end
     end
@@ -53,20 +62,26 @@ module Heel
       end
     end
 
-    def run_bot(bot_name, cmd, request = {})
-      init_bot(bot_name) do |bot|
+    def run_bot(name, cmd, request = {})
+      init_bot(name) do |bot|
         bot.run(cmd)
       end
     end
 
-    def help_bot(bot_name)
-      init_bot(bot_name) do |bot|
+    def serve_bot(name, request = {})
+      init_bot(name) do |bot|
+        bot.serve(request)
+      end
+    end
+
+    def help_bot(name)
+      init_bot(name) do |bot|
         puts bot.helptext
       end
     end
 
-    def info_bot(bot_name)
-      init_bot(bot_name) do |bot|
+    def info_bot(name)
+      init_bot(name) do |bot|
         puts "Name:     #{bot.name}"
         puts "Version:  #{bot.version}"
         puts "Summary:  #{bot.summary}"

@@ -14,5 +14,9 @@ module Heelspec
       @msg = get_param(cmd, 0)
       puts @msg
     end
+
+    def serve(request)
+      { :text => "hello,world"}
+    end
   end
 end
