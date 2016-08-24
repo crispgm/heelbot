@@ -25,9 +25,7 @@ module Heel
       bot_name, output = @bot_manager.trigger_bot(args, request)
 
       resp = Heel::Response.new
-      resp.body = {
-        :text => output
-      }
+      resp.body = output
 
       response.status = 200
       response['Content-Type'] = "application/json"

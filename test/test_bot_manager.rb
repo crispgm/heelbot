@@ -38,7 +38,7 @@ class TestBotManager < Minitest::Test
     assert_output("Conflict: Trigger !hw is existed.\nhello\n") {
       $runtime_mode = Heel::Util::RUNTIME_CONSOLE
       triggered_name = @bot_manager.trigger_bot("!helloworld hello", {})
-      assert_equal("hello_world", triggered_name)
+      assert_equal(["hello_world", ""], triggered_name)
       assert_equal(false, @bot_manager.triggers_loaded)
     }
   end
