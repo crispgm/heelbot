@@ -51,6 +51,22 @@ class TestBotManager < Minitest::Test
     }
   end
 
+  def test_trigger_nil
+    assert_output(nil) {
+      $runtime_mode = Heel::Util::RUNTIME_CONSOLE
+      triggered_name = @bot_manager.trigger_bot(nil, {})
+      assert_equal([nil, nil], triggered_name)
+    }
+  end
+
+  def test_trigger_bot_serve
+    assert_output(nil) {
+      $runtime_mode = Heel::Util::RUNTIME_WEB
+      triggered_name, output = @bot_manager.trigger_bot("!helloworld hello", {})
+      assert_equal(["hello_world", {:text=>"hello,world"}], [triggered_name, output])
+    }
+  end
+
   def test_run_bot
     assert_output("hello, world\n") {
       @bot_manager.run_bot("hello_world", ["hello, world"])

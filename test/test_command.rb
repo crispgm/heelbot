@@ -24,16 +24,32 @@ OUT
     }
   end
 
-  def test_parse_msg
+  def test_parse_msg_console
+    $runtime_mode = Heel::Util::RUNTIME_CONSOLE
     argv = ['msg', '!hw', 'helloworld']
     @cmd = Heel::Command.new(argv, @spec_path)
     assert_equal("msg, [\"test_bot\", \"\"]", @cmd.parse_cmd)
   end
 
-  def test_parse_msg2
+  def test_parse_msg2_console
+    $runtime_mode = Heel::Util::RUNTIME_CONSOLE
     argv = ['msg', '!helloworld', 'helloworld']
     @cmd = Heel::Command.new(argv, @spec_path)
     assert_equal("msg, [\"hello_world\", \"\"]", @cmd.parse_cmd)
+  end
+
+  def test_parse_msg_web
+    $runtime_mode = Heel::Util::RUNTIME_WEB
+    argv = ['msg', '!hw', 'helloworld']
+    @cmd = Heel::Command.new(argv, @spec_path)
+    assert_equal("msg, [\"test_bot\", {:text=>\"Bot not implemented\"}]", @cmd.parse_cmd)
+  end
+
+  def test_parse_msg2_web
+    $runtime_mode = Heel::Util::RUNTIME_WEB
+    argv = ['msg', '!helloworld', 'helloworld']
+    @cmd = Heel::Command.new(argv, @spec_path)
+    assert_equal("msg, [\"hello_world\", {:text=>\"hello,world\"}]", @cmd.parse_cmd)
   end
 
   def test_parse_info
