@@ -12,14 +12,36 @@ module Heelspec
       @license  = "MIT"
       @helptext = ""
       @triggers = ["!rio"]
+      @title = %w(Rank Code Gold Silver Bronze Total Country)
+      @medal_list = []
     end
 
     # rubocop:disable Lint/UnusedMethodArgument
     def run(cmd)
+      get_rio
+
+      puts @title.join "\t"
+      @medal_list.each do |country|
+        puts country.join "\t"
+      end
+    end
+
+    def serve(request)
+      get_rio
+
+      result = ""
+      result << @title.join("|") << "\\n"
+      result << "|-|-|-|-|-|-|-|" << "\\n"
+      @medal_list.each do |country|
+        result << "|" << country.join("|") << "|\\n"
+      end
+      { :text => result }
+    end
+
+    private
+    def get_rio
       page = Nokogiri::HTML(open("https://www.rio2016.com/en/medal-count-country"))
       page.encoding = "UTF-8"
-
-      puts "Rank\tCode\tGold\tSilver\tBronze\tTotal\tCountry"
 
       page.css("tr.table-medal-countries__link-table").each do |tr|
         index = tr.css("td.col-1")[0].css("strong")[0].css("strong")[0].text
@@ -29,7 +51,7 @@ module Heelspec
         silver = tr.css("td.col-5")[0].text
         bronze = tr.css("td.col-6")[0].text
         total = tr.css("td.col-7")[0].css("strong")[0].text
-        puts "#{index}\t#{country}\t#{gold}\t#{silver}\t#{bronze}\t#{total}\t#{country_full}"
+        @medal_list << [index, country, gold, silver, bronze, total, country_full]
       end
     end
   end
