@@ -7,6 +7,8 @@ module Heelspec
     OCT_MOVIE_DOMAIN_NAME = "http://www.octeshow.com/".freeze
     OCT_MOVIE_SCHEDULE_PAGE_URL = "http://www.octeshow.com/index.php?a=index&m=News&id=74".freeze
 
+    BEARY_CHAT_INCOMING_URL = "https://hook.bearychat.com/=bw7pB/incoming/449523bbe7877dd17064a761c85c5d50".freeze
+
     def initialize
       @name     = "OCT Movie"
       @version  = "1.0.0"
@@ -30,15 +32,27 @@ module Heelspec
           :url => img
         }
       end
+
       data = { 
         :text => "OCT Movie Schedule",
-        :attachments => {
+        :attachments => [
           :title => "",
           :text => "",
           :color => "#666666",
           :images => img_data
-        }
+        ]
       }
+
+      uri = URI.parse(BEARY_CHAT_INCOMING_URL)
+      req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+      req.body = data.to_json
+      res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+        http.request(req)
+      end
+
+      p res.body
+
+      data
     end
 
     private
