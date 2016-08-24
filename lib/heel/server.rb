@@ -19,27 +19,33 @@ module Heel
 
   class BotServlet < WEBrick::HTTPServlet::AbstractServlet
     def do_GET request, response
-      @bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
-      args = request.query["msg"]
-
-      bot_name, output = @bot_manager.trigger_bot(args, request)
-
-      resp = Heel::Response.new
-      resp.body = output
-
-      response.status = 200
-      response['Content-Type'] = "application/json"
-      response.body = resp.as_json
+      handle_request request, response
     end
 
     def do_POST request, response
-      @bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
+      handle_request request, response
+    end
+
+    def handle_request(request, response)
+      bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
+
       args = request.query["msg"]
 
-      bot_name, output = @bot_manager.trigger_bot(args, request)
+      bot_name, output = bot_manager.trigger_bot(args, request)
 
       resp = Heel::Response.new
       resp.body = output
+
+      if output == nil
+        resp.body = {
+          :error => "trigger message error",
+          :time => Time.now.to_i
+        }
+        response.status = 404
+        response['Content-Type'] = "application/json"
+        response.body = resp.as_json
+        return
+      end
 
       response.status = 200
       response['Content-Type'] = "application/json"
@@ -54,7 +60,7 @@ module Heel
 
     # HTTP server to handle requests for heels
     # Format:
-    # https://ip:port/heels?text=[http-encoded-text]
+    # https://ip:port/heels/query?msg=!msg
     def initialize(argv)
       @argv = argv
       @port = "9999".to_i

@@ -21,6 +21,10 @@ module Heel
     def trigger_bot(raw_msg, raw_request = {})
       get_triggers
 
+      if raw_msg.empty?
+        return nil, nil
+      end
+
       @triggers.each do |trigger_text, bot_name|
         if raw_msg.start_with? trigger_text
           # triggered
@@ -42,6 +46,8 @@ module Heel
           return bot_name, output
         end
       end
+
+      return nil, nil
     end
 
     def init_bot(bot_name)

@@ -43,6 +43,14 @@ class TestBotManager < Minitest::Test
     }
   end
 
+  def test_trigger_not_match
+    assert_output(nil) {
+      $runtime_mode = Heel::Util::RUNTIME_CONSOLE
+      triggered_name = @bot_manager.trigger_bot("!aaa", {})
+      assert_equal([nil, nil], triggered_name)
+    }
+  end
+
   def test_run_bot
     assert_output("hello, world\n") {
       @bot_manager.run_bot("hello_world", ["hello, world"])
