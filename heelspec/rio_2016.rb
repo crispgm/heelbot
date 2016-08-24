@@ -30,10 +30,10 @@ module Heelspec
       get_rio
 
       result = ""
-      result << @title.join("|") << "\\n"
-      result << "|-|-|-|-|-|-|-|" << "\\n"
+      result << "|" << @title.join("|") << "|" << "<br>"
+      result << "|-|-|-|-|-|-|-|" << "<br>"
       @medal_list.each do |country|
-        result << "|" << country.join("|") << "|\\n"
+        result << "|" << country.join("|") << "|" << "<br>"
       end
       { :text => result }
     end
