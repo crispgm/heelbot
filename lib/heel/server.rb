@@ -31,6 +31,20 @@ module Heel
       response['Content-Type'] = "application/json"
       response.body = resp.as_json
     end
+
+    def do_POST request, response
+      @bot_manager = Heel::BotManager.new(Heel::Command::DEFAULT_SPEC_PATH)
+      args = request.query["msg"]
+
+      bot_name, output = @bot_manager.trigger_bot(args, request)
+
+      resp = Heel::Response.new
+      resp.body = output
+
+      response.status = 200
+      response['Content-Type'] = "application/json"
+      response.body = resp.as_json
+    end
   end
 
   class Server
