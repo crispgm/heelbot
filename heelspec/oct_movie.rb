@@ -27,19 +27,17 @@ module Heelspec
       img_data = []
       imgs.each do |img|
         img_data << {
-          :title => "",
-          :text => "",
-          :color => "#666666",
-          :images => [
-            {
-              :url => img
-            }
-          ]
+          :url => img
         }
       end
       data = { 
         :text => "OCT Movie Schedule",
-        :attachments => img_data
+        :attachments => {
+          :title => "",
+          :text => "",
+          :color => "#666666",
+          :images => img_data
+        }
       }
     end
 
