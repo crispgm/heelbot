@@ -26,18 +26,6 @@ module Heelspec
       end
     end
 
-    def serve(request)
-      get_rio
-
-      result = ""
-      result << "|" << @title.join("|") << "|" << "<br>"
-      result << "|-|-|-|-|-|-|-|" << "<br>"
-      @medal_list.each do |country|
-        result << "|" << country.join("|") << "|" << "<br>"
-      end
-      { :text => result }
-    end
-
     private
     def get_rio
       page = Nokogiri::HTML(open("https://www.rio2016.com/en/medal-count-country"))
