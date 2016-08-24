@@ -8,6 +8,14 @@ module Heel
     attr_accessor :helptext
     attr_accessor :triggers
 
+    def run(cmd)
+      print "Bot not implemented"
+    end
+
+    def serve(request)
+      { :text => "Bot not implemented"}
+    end
+
     def get_param(cmd, index)
       begin
         if cmd[index].empty?

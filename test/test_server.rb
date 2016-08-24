@@ -29,7 +29,7 @@ class TestServer < Minitest::Test
 
     content = open("http://127.0.0.1:9999/heels/query?msg=!hw%20hello,world").read
     response = JSON.parse(content)
-    assert_equal(true, response["text"].include?("hello,world"))
+    assert_equal("Bot not implemented", response["text"])
   end
 
   def teardown

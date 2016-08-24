@@ -27,13 +27,13 @@ OUT
   def test_parse_msg
     argv = ['msg', '!hw', 'helloworld']
     @cmd = Heel::Command.new(argv, @spec_path)
-    assert_equal("msg, test_bot", @cmd.parse_cmd)
+    assert_equal("msg, [\"test_bot\", \"\"]", @cmd.parse_cmd)
   end
 
   def test_parse_msg2
     argv = ['msg', '!helloworld', 'helloworld']
     @cmd = Heel::Command.new(argv, @spec_path)
-    assert_equal("msg, hello_world", @cmd.parse_cmd)
+    assert_equal("msg, [\"hello_world\", \"\"]", @cmd.parse_cmd)
   end
 
   def test_parse_info
