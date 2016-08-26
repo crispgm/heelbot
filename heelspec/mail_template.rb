@@ -4,8 +4,8 @@ module Heelspec
     require "liquid"
 
     def initialize
-      @name = "Mail Template Generator"
-      @version = "2.0.0"
+      @name     = "Mail Template Generator"
+      @version  = "2.0.0"
       @summary  = "Generate email with group members and Liquid template"
       @author   = "David Zhang"
       @license  = "MIT"
