@@ -6,6 +6,7 @@ module Heel
   require "heel/response"
   require "heel/bot"
   require "heel/bot_manager"
+  require "heel/new_bot"
 
   # Utils
   require "heel/mail_helper"
