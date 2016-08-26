@@ -1,0 +1,18 @@
+module Heelspec
+  class {{ name }} < Heel::Bot
+    def initialize
+      @name     = "{{ name }}"
+      @version  = "{{ version }}"
+      @summary  = "{{ summary }}"
+      @author   = "{{ author }}"
+      @license  = "{{ license }}"
+      @helptext = "{{ helptext }}"
+      @triggers = %w({{ triggers | join " " }})
+    end
+
+    def run(cmd)
+      @msg = get_param(cmd, 0)
+      puts @msg
+    end
+  end
+end

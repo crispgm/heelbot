@@ -1,14 +1,18 @@
 module Heel
   class Command
 
-    DEFAULT_SPEC_PATH = "heelspec".freeze
+    DEFAULT_SPEC_PATH     = "heelspec".freeze
+    DEFAULT_TEMPLATE_PATH = "lib/bot_template/bot.liquid".freeze
 
     attr_reader :argv
     attr_reader :bot_manager
+    attr_reader :spec_path, :tpl_path
 
-    def initialize(argv, spec_path = DEFAULT_SPEC_PATH)
+    def initialize(argv, spec_path = DEFAULT_SPEC_PATH, tpl_path = DEFAULT_TEMPLATE_PATH)
       @argv = argv
       @bot_manager = Heel::BotManager.new(spec_path)
+      @spec_path = spec_path
+      @tpl_path = tpl_path
     end
 
     def usage
@@ -24,6 +28,9 @@ Bot
     heel help [bot_name]
     heel run  [bot_name]
     heel info [bot_name]
+
+New Bot
+    heel new  [bot_name]
 
 DESC
 
@@ -43,6 +50,8 @@ DESC
         run(argv)
       when "info"
         info(argv)
+      when "new"
+        new_bot(argv)
       else
         usage
       end
@@ -81,6 +90,24 @@ DESC
     def list
       @bot_manager.list_bot
       "list"
+    end
+
+    def new_bot(argv)
+      return usage if argv.length <= 1
+
+      bot_info = {
+        "name"     => argv[1].to_s,
+        "version"  => "1.0.0",
+        "summary"  => "A new Heel bot.",
+        "author"   => "",
+        "license"  => "MIT",
+        "helptext" => "",
+        "triggers" => []
+      }
+
+      Heel::NewBot.new(@tpl_path, @spec_path).process bot_info
+
+      "new"
     end
   end
 end
