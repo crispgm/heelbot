@@ -58,7 +58,7 @@ module Heel
           puts "#{bot_name} not found"
           return
         end
-        bot_class_name = bot_name_to_class_name(bot_name)
+        bot_class_name = Heel::Util.bot_name_to_class_name(bot_name)
         bot_class = Object.const_get("Heelspec::#{bot_class_name}")
         @bot_instance[bot_name] = bot_class.new
       end
@@ -135,15 +135,5 @@ module Heel
         f.close
       end
     end
-
-    def bot_name_to_class_name(bot_name)
-      ary_bot_name = bot_name.split "_"
-      class_name = ""
-      ary_bot_name.each do |name_part|
-        class_name << name_part.capitalize
-      end
-      class_name
-    end
-
   end
 end

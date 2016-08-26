@@ -27,5 +27,14 @@ module Heel
       return true if $runtime_mode == RUNTIME_CONSOLE
       false
     end
+
+    def self.bot_name_to_class_name(bot_name)
+      ary_bot_name = bot_name.split "_"
+      class_name = ""
+      ary_bot_name.each do |name_part|
+        class_name << name_part.capitalize
+      end
+      class_name
+    end
   end
 end
