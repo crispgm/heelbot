@@ -3,6 +3,9 @@ module Heel
   require "webrick"
 
   class StatusServlet < WEBrick::HTTPServlet::AbstractServlet
+    # HTTP servlet to handle status for heels
+    # Format:
+    # https://ip:port/heels/status
     def do_GET request, response
       resp = Heel::Response.new
       resp.body = {
@@ -18,6 +21,9 @@ module Heel
   end
 
   class BotServlet < WEBrick::HTTPServlet::AbstractServlet
+    # HTTP servlet to handle requests for heels
+    # Format:
+    # https://ip:port/heels/query?msg=!msg
     def do_GET request, response
       handle_request request, response
     end
@@ -66,9 +72,6 @@ module Heel
     attr_reader :argv
     attr_reader :port
 
-    # HTTP server to handle requests for heels
-    # Format:
-    # https://ip:port/heels/query?msg=!msg
     def initialize(argv)
       @argv = argv
       @port = "9999".to_i

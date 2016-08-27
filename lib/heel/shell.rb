@@ -16,6 +16,5 @@ module Heel
     end
   end
 
-  class ShellOpenError < StandardError
-  end
+  class ShellOpenError < StandardError; end
 end

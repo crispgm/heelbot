@@ -3,7 +3,11 @@ require "helper"
 class TestNewBot < Minitest::Test
   context "test new bot" do
     setup do
-      @new_bot = Heel::NewBot.new("lib/bot_template/bot.liquid", "test/heelspec")
+      options = {
+        :tpl_path  => "lib/bot_template/bot.liquid",
+        :spec_path => "test/heelspec"
+      }
+      @new_bot = Heel::NewBot.new(options)
     end
 
     should "initialize with paths" do

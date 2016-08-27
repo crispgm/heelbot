@@ -1,18 +1,34 @@
 module Heel
+  # Heel::Command is to handle terminal commands
   class Command
 
     DEFAULT_SPEC_PATH     = "heelspec".freeze
     DEFAULT_TEMPLATE_PATH = "lib/bot_template/bot.liquid".freeze
 
     attr_reader :argv
-    attr_reader :bot_manager
     attr_reader :spec_path, :tpl_path
+    attr_reader :bot_manager
 
-    def initialize(argv, spec_path = DEFAULT_SPEC_PATH, tpl_path = DEFAULT_TEMPLATE_PATH)
-      @argv = argv
+    def initialize(argv, options = {})
+      # merge with default options
+      default_options = {
+        :spec_path => DEFAULT_SPEC_PATH,
+        :tpl_path  => DEFAULT_TEMPLATE_PATH
+      }
+      
+      default_options.each do |key, value|
+        if !options.has_key?(key)
+          options[key] = value
+        end
+      end
+
+      # assign members
+      @argv      = argv
+      @spec_path = options[:spec_path]
+      @tpl_path  = options[:tpl_path]
+      
+      # init bot manager
       @bot_manager = Heel::BotManager.new(spec_path)
-      @spec_path = spec_path
-      @tpl_path = tpl_path
     end
 
     def usage
@@ -105,7 +121,11 @@ DESC
         "triggers" => []
       }
 
-      Heel::NewBot.new(@tpl_path, @spec_path).process bot_info
+      options = {
+        :tpl_path  => @tpl_path,
+        :spec_path => @spec_path
+      }
+      Heel::NewBot.new(options).process(bot_info)
 
       "new"
     end

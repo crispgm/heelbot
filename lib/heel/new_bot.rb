@@ -1,4 +1,5 @@
 module Heel
+  # Heel::NewBot create new bot by liquid template
   class NewBot
 
     require "liquid"
@@ -7,9 +8,9 @@ module Heel
     attr_reader :spec_path
     attr_reader :bot_path
 
-    def initialize(tpl_path, spec_path)
-      @tpl_path  = tpl_path
-      @spec_path = spec_path
+    def initialize(options)
+      @tpl_path  = options[:tpl_path]
+      @spec_path = options[:spec_path]
     end
 
     def process(bot_info)
@@ -36,6 +37,5 @@ module Heel
     end
   end
 
-  class BotExistedError < StandardError
-  end
+  class BotExistedError < StandardError; end
 end
