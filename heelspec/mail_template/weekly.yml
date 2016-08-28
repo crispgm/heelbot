@@ -1,5 +1,5 @@
 title: '张皖龙 个人周报 {{ created_time | date: "%Y%m%d" }}'
-to: 'luhua@baidu.com'
+to: 'luhua01@baidu.com'
 cc: ''
 body: |
   Hi,
