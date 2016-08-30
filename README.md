@@ -138,3 +138,15 @@ helloworld
     ```
     hello, world
     ```
+
+## Contributing
+
+* If you have a question about using Heelbot, start a discussion on [Gitter](https://gitter.im/crispgm/heelbot).
+* If you think you've found a bug with Heelbot, [open an issue](https://github.com/crispgm/heelbot/issues/new).
+* If you want to contribute code, fork and make a pull request.
+
+## License
+
+Copyright (c) David Zhang, 2016.
+
+[MIT License](https://github.com/crispgm/heelbot/blob/master/LICENSE).
