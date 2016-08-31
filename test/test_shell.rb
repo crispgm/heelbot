@@ -1,16 +1,18 @@
 require "helper"
 
 class TestShell < Minitest::Test
-  def test_open_fail_in_non_mac_os
-    if !OS.mac?
-      exception = assert_raises Heel::ShellOpenError do
-        Heel::Shell.open('')
+  context "test shell" do
+    should "raise exception in non-mac system" do
+      if !OS.mac?
+        exception = assert_raises Heel::ShellOpenError do
+          Heel::Shell.open('')
+        end
+        assert_equal('Cannot open in non-mac system', exception.message)
       end
-      assert_equal('Cannot open in non-mac system', exception.message)
     end
-  end
 
-  def test_shell_sh
-    assert_equal(true, Heel::Shell.sh('echo'))
+    should "call execute shell command" do
+      assert_equal(true, Heel::Shell.sh('echo'))
+    end
   end
 end
