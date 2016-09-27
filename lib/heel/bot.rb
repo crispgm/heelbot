@@ -29,5 +29,9 @@ module Heel
         nil
       end
     end
+
+    def inspect
+      puts "#<Heel::Bot> @name=#{name}"
+    end
   end
 end

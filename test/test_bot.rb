@@ -19,6 +19,12 @@ class TestBot < Minitest::Test
         assert_equal("", @bot.helptext)
         assert_equal(["!hw", "!helloworld"], @bot.triggers)
       end
+
+      should "inspect" do
+        assert_output("#<Heel::Bot> @name=Hello World\n") {
+          @bot.inspect
+        }
+      end
     end
 
     context "bot runtime" do
