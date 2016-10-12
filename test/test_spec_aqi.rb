@@ -19,16 +19,20 @@ class TestSpecAqi < Minitest::Test
 
     should "show aqi if validate city input" do
       output_prefix = "AQI of 北京 is"
+      output_error  = "Error: Service is down."
       output = Heel::Util.capture_stdout do
         @klass.run(["北京"])
       end
-      assert_equal(true, output.start_with?(output_prefix))
+      assert_equal(true, output.start_with?(output_prefix) || output.start_with?(output_error))
     end
 
     should "show aqi not found if inexisted city input" do
-      assert_output("AQI of aa is not found.\n") {
+      output_prefix = "AQI of 北京 is not found"
+      output_error  = "Error: Service is down."
+      output = Heel::Util.capture_stdout do
         @klass.run(["aa"])
-      }
+      end
+      assert_equal(true, output.start_with?(output_prefix) || output.start_with?(output_error))
     end
   end
 end

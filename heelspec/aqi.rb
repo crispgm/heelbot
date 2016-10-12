@@ -39,10 +39,17 @@ module Heelspec
     def parse(body)
       parsed = JSON.parse(body)
 
+      if !parsed.has_key?("retData")
+        puts "Error: Service is down."
+        return false
+      end
+
       if !parsed["retData"].empty?
         puts "AQI of #{@city} is #{parsed["retData"]["aqi"]}."
+        return true
       else
         puts "AQI of #{@city} is not found."
+        return false
       end
     end
   end
