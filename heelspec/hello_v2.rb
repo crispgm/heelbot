@@ -1,12 +1,12 @@
-Heel::BotV2.define do
-  name   "Hello V2" 
-  author "David Zhang"
+Heel::BotV2.define do |bot|
+  bot.name   "Hello V2" 
+  bot.author "David Zhang"
 
-  trigger "!hv2" do |params|
-    implement
+  bot.trigger "!hv2" do |params|
+    bot.implement
   end
 
-  implement do
+  bot.implement do
     puts "hello, v2!"
   end
 end
