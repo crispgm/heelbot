@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w(.. lib)))
+
+require "heel"
+require_relative "../heelspec/hello_v2"
+
+Heel::Registry.trigger
