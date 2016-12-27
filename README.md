@@ -5,7 +5,6 @@
 [![](https://api.travis-ci.org/crispgm/heelbot.svg)](https://travis-ci.org/crispgm/heelbot)
 [![Code Climate](https://codeclimate.com/github/crispgm/heelbot/badges/gpa.svg)](https://codeclimate.com/github/crispgm/heelbot)
 [![Test Coverage](https://codeclimate.com/github/crispgm/heelbot/badges/coverage.svg)](https://codeclimate.com/github/crispgm/heelbot/coverage)
-[![BADGINATOR](https://badginator.herokuapp.com/crispgm/heelbot.svg)](https://github.com/defunctzombie/badginator)
 
 ## Introduction
 
