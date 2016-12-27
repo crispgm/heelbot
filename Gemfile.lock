@@ -11,8 +11,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.3.0)
-    codeclimate-test-reporter (0.6.0)
-      simplecov (>= 0.7.1, < 1.0.0)
+    codeclimate-test-reporter (1.0.0)
     docile (1.1.5)
     json (2.0.2)
     liquid (3.0.6)
@@ -60,7 +59,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.6)
-  codeclimate-test-reporter
+  codeclimate-test-reporter (~> 1.0.0)
   heelbot!
   json
   liquid
@@ -71,7 +70,8 @@ DEPENDENCIES
   rake
   rubocop
   shoulda-context
+  simplecov
   webrick
 
 BUNDLED WITH
-   1.13.2
+   1.13.6
