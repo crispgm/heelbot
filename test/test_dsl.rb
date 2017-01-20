@@ -1,14 +1,14 @@
 require "helper"
 
-class TestBotV2 < Minitest::Test
+class TestDsl < Minitest::Test
   context "test dsl" do
     should "" do
-      filename = "heelspec/hello_v2.rb".freeze
+      filename = "heelspec/hello.bot".freeze
       code = File.read(filename)
       
       bot = Heel::BotV2::DSL.new do
-      	define_attr("name", "version", "author", "summary", "helptext", "license")
-      	instance_eval(code)
+        define_attr("name", "version", "author", "summary", "helptext", "license")
+        instance_eval(code)
       end
 
       assert_equal("Hello V2", bot.name)

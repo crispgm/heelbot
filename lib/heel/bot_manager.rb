@@ -53,14 +53,17 @@ module Heel
     def init_bot(bot_name)
       if !@bot_instance.has_key? bot_name
         begin
-          require_relative "#{@bots_path}/#{bot_name}"
-        rescue LoadError
+          filename = "heelspec/#{bot_name}.bot"
+          code = File.read(filename)
+        rescue
           puts "#{bot_name} not found"
           return
         end
-        bot_class_name = Heel::Util.bot_name_to_class_name(bot_name)
-        bot_class = Object.const_get("Heelspec::#{bot_class_name}")
-        @bot_instance[bot_name] = bot_class.new
+        
+        @bot_instance[bot_name] = Heel::BotV2::DSL.new do
+          define_attr("name", "version", "author", "summary", "helptext", "license")
+          instance_eval(code)
+        end
       end
 
       if block_given?
