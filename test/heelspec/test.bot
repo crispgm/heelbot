@@ -5,7 +5,7 @@ summary  "test"
 helptext "test help"
 license  "MIT"
 
-trigger "test" do |params|
+trigger "test"
   puts "test"
 end
 

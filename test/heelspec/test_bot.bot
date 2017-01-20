@@ -1,0 +1,12 @@
+name     "TestBot"
+version  "1.0.0"
+summary  "A new Heel bot."
+author   "Test"
+license  "MIT"
+helptext "testing new bot"
+
+implement do
+  puts "Hello, world!"
+end
+
+

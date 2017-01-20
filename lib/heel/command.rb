@@ -78,14 +78,14 @@ DESC
     def msg(argv)
       return usage if argv.length <= 1
 
-      triggered_bot = @bot_manager.trigger_bot(argv.slice(1, argv.length).join(" "), {})
+      triggered_bot = @bot_manager.trigger_bot(argv.slice(1, argv.length).join(" "))
       "msg, #{triggered_bot}"
     end
 
     def run(argv)
       return usage if argv.length <= 1
 
-      @bot_manager.run_bot(argv[1], argv.slice(2, argv.length))
+      @bot_manager.run_bot(argv[1])
       "run"
     end
 
@@ -104,7 +104,10 @@ DESC
     end
 
     def list
-      @bot_manager.list_bot
+      @bot_manager.each do |bot|
+        puts bot["Name"]
+      end
+
       "list"
     end
 
