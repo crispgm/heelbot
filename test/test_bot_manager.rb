@@ -28,7 +28,7 @@ class TestBotManager < Minitest::Test
 
     should "init bot" do
       @bot_manager.init_bot("hello")
-      assert_equal(true, @bot_manager.bot_instance["hello"].is_a?(Heel::BotV2::DSL))
+      assert_equal(true, @bot_manager.bot_instance["hello"].is_a?(Heel::DSL::Bot))
     end
 
     should "help bot" do

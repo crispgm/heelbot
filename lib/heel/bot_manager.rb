@@ -67,7 +67,7 @@ module Heel
           return
         end
         
-        @bot_instance[bot_name] = Heel::BotV2::DSL.new do
+        @bot_instance[bot_name] = Heel::DSL::Bot.new do
           define_attr("name", "version", "author", "summary", "helptext", "license")
           instance_eval(code)
         end
