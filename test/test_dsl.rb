@@ -6,7 +6,7 @@ class TestDsl < Minitest::Test
       filename = "heelspec/hello.bot".freeze
       code = File.read(filename)
       
-      bot = Heel::BotV2::DSL.new do
+      bot = Heel::DSL::Bot.new do
         define_attr("name", "version", "author", "summary", "helptext", "license")
         instance_eval(code)
       end

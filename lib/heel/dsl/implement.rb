@@ -1,6 +1,6 @@
 module Heel
-  module BotV2
-    class Implement
+  module DSL
+    class Implement < Bot
       def initialize(block)
       	@block = block
       end

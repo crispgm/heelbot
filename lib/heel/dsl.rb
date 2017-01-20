@@ -1,6 +1,6 @@
 module Heel
-  module BotV2
-    class DSL
+  module DSL
+    class Bot
       def initialize(&block)
         instance_eval(&block)
       end
