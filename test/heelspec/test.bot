@@ -5,7 +5,7 @@ summary  "test"
 helptext "test help"
 license  "MIT"
 
-trigger "test"
+trigger "test" do
   puts "test"
 end
 

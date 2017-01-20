@@ -64,8 +64,8 @@ DESC
         argv = ["list"]
         cmd = Heel::Command.new(argv, @options)
         output = <<OUT
-hello_world
-test_bot
+hello
+test
 OUT
         assert_output(output) {
           assert_equal("list", cmd.parse_cmd)
@@ -120,8 +120,8 @@ OUT
         argv = ["new", "test_new_command"]
         cmd = Heel::Command.new(argv, {:spec_path => "test/heelspec"})
         assert_equal("new", cmd.parse_cmd)
-        assert_equal(true, File.exist?("test/heelspec/test_new_command.rb"))
-        Heel::Shell.sh "rm test/heelspec/test_new_command.rb"
+        assert_equal(true, File.exist?("test/heelspec/test_new_command.bot"))
+        Heel::Shell.sh "rm test/heelspec/test_new_command.bot"
       end
 
       should "invoke usage wihout enough params" do
@@ -133,36 +133,44 @@ OUT
 
     context "msg command" do
       context "runtime mode" do
-        should "invoke with trigger" do
+        setup do
           $runtime_mode = Heel::Util::RUNTIME_CONSOLE
-          argv = ["msg", "!hw", "helloworld"]
+        end
+
+        should "invoke with trigger" do
+          argv = ["msg", "hv1"]
           cmd = Heel::Command.new(argv, @options)
-          assert_equal("msg, [\"test_bot\", \"\"]", cmd.parse_cmd)
+          assert_equal("msg, [\"hello\", \"\"]", cmd.parse_cmd)
         end
 
         should "trigger other keyword" do
-          $runtime_mode = Heel::Util::RUNTIME_CONSOLE
-          argv = ["msg", "!helloworld", "helloworld"]
+          argv = ["msg", "hv2"]
           cmd = Heel::Command.new(argv, @options)
-          assert_equal("msg, [\"hello_world\", \"\"]", cmd.parse_cmd)
+          assert_equal("msg, [\"hello\", \"\"]", cmd.parse_cmd)
+        end
+
+        should "trigger not exists" do
+          argv = ["msg", "aaa"]
+          cmd = Heel::Command.new(argv, @options)
+          assert_equal("msg, [nil, nil]", cmd.parse_cmd)
         end
       end
       
-      context "web mode" do
-        should "return bot not implemented when trigger bot without web mode" do
-          $runtime_mode = Heel::Util::RUNTIME_WEB
-          argv = ["msg", "!hw", "helloworld"]
-          cmd = Heel::Command.new(argv, @options)
-          assert_equal("msg, [\"test_bot\", {:text=>\"Bot not implemented\"}]", cmd.parse_cmd)
-        end
+      # context "web mode" do
+      #   should "return bot not implemented when trigger bot without web mode" do
+      #     $runtime_mode = Heel::Util::RUNTIME_WEB
+      #     argv = ["msg", "!hw", "helloworld"]
+      #     cmd = Heel::Command.new(argv, @options)
+      #     assert_equal("msg, [nil, nil]", cmd.parse_cmd)
+      #   end
 
-        should "invoke with trigger" do
-          $runtime_mode = Heel::Util::RUNTIME_WEB
-          argv = ["msg", "!helloworld", "helloworld"]
-          cmd = Heel::Command.new(argv, @options)
-          assert_equal("msg, [\"hello_world\", {:text=>\"hello,world\"}]", cmd.parse_cmd)
-        end
-      end
+      #   should "invoke with trigger" do
+      #     $runtime_mode = Heel::Util::RUNTIME_WEB
+      #     argv = ["msg", "hv1"]
+      #     cmd = Heel::Command.new(argv, @options)
+      #     assert_equal("msg, [\"hello\", \"\"]", cmd.parse_cmd)
+      #   end
+      # end
     end
   end
 end

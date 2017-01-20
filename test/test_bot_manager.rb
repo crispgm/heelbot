@@ -70,6 +70,15 @@ INFO
         end
       end
 
+      should "match prefix" do
+        assert_output("hello, v2!\n") do
+          $runtime_mode = Heel::Util::RUNTIME_CONSOLE
+          triggered_name = @bot_manager.trigger_bot("hv1 gogogo")
+          assert_equal(["hello", ""], triggered_name)
+          assert_equal(false, @bot_manager.triggers_loaded)
+        end
+      end
+
       should "not match" do
         assert_output(nil) do
           $runtime_mode = Heel::Util::RUNTIME_CONSOLE
