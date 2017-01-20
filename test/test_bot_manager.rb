@@ -53,6 +53,30 @@ INFO
     end
 
     context "trigger bot" do
+      should "nil when trigger nil" do
+        assert_output(nil) do
+          $runtime_mode = Heel::Util::RUNTIME_CONSOLE
+          triggered_name = @bot_manager.trigger_bot(nil)
+          assert_equal([nil, nil], triggered_name)
+        end
+      end
+
+      should "match msg" do
+        assert_output("hello, v2!\n") do
+          $runtime_mode = Heel::Util::RUNTIME_CONSOLE
+          triggered_name = @bot_manager.trigger_bot("hv1")
+          assert_equal(["hello", ""], triggered_name)
+          assert_equal(false, @bot_manager.triggers_loaded)
+        end
+      end
+
+      should "not match" do
+        assert_output(nil) do
+          $runtime_mode = Heel::Util::RUNTIME_CONSOLE
+          triggered_name = @bot_manager.trigger_bot("aaa")
+          assert_equal([nil, nil], triggered_name)
+        end
+      end
     end
 
     context "run bot" do

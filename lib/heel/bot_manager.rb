@@ -25,7 +25,7 @@ module Heel
       end
     end
 
-    def trigger_bot(raw_msg, raw_request = {})
+    def trigger_bot(raw_msg)
       get_triggers
 
       if !raw_msg.is_a? String
@@ -41,13 +41,8 @@ module Heel
           end
 
           output = ""
-          # run bot
           if Heel::Util.console_mode?
-            run_bot(bot_name, cmd, raw_request)
-          end
-          # serve bot
-          if Heel::Util.web_mode?
-            output = serve_bot(bot_name, raw_request)
+            run_bot(bot_name)
           end
 
           return bot_name, output
@@ -84,12 +79,6 @@ module Heel
       end
     end
 
-    def serve_bot(name, request = {})
-      init_bot(name) do |bot|
-        # bot.serve(request)
-      end
-    end
-
     def help_bot(name)
       init_bot(name) do |bot|
         puts bot.helptext
@@ -118,7 +107,7 @@ module Heel
       @bot_list.each do |bot_info|
         init_bot(bot_info["Name"]) do |bot|
           if !bot.triggers.empty?
-            bot.triggers.each do |trigger|
+            bot.triggers.each_key do |trigger|
               if @triggers.has_key? trigger
                 puts "Conflict: Trigger #{trigger} is existed."
               end
