@@ -26,18 +26,22 @@ class TestNewBot < Minitest::Test
         "triggers" => ["!new"]
       }
       @new_bot.process(bot_info)
-      assert_equal(true, File.exist?("test/heelspec/test_new_bot.rb"))
+      filename = "test/heelspec/test_new_bot.bot"
+      assert_equal(true, File.exist?(filename))
 
-      require_relative "../test/heelspec/test_new_bot"
-      @bot = Heelspec::TestNewBot.new
-      assert_equal("TestNewBot", @bot.name)
+      code = File.read(filename)
+      @bot = Heel::DSL::Bot.new do
+        define_attr("name", "version", "author", "summary", "helptext", "license")
+        instance_eval(code)
+      end
+
+      assert_equal(bot_info["name"], @bot.name)
       assert_equal(bot_info["version"], @bot.version)
       assert_equal(bot_info["summary"], @bot.summary)
       assert_equal(bot_info["author"], @bot.author)
       assert_equal(bot_info["license"], @bot.license)
       assert_equal(bot_info["helptext"], @bot.helptext)
-      assert_equal(bot_info["triggers"], @bot.triggers)
-      Heel::Shell.sh "rm test/heelspec/test_new_bot.rb"
+      assert_equal(bot_info["triggers"], @bot.triggers.keys)
     end
 
     should "raise error when bot exists" do
@@ -54,6 +58,10 @@ class TestNewBot < Minitest::Test
         @new_bot.process(bot_info)
       end
       assert_equal("Bot test_bot is existed.", exception.message)
+    end
+
+    teardown do
+      Heel::Shell.sh "rm test/heelspec/test_new_bot.bot"
     end
   end
 end

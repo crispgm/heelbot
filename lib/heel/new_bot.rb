@@ -14,7 +14,7 @@ module Heel
     end
 
     def process(bot_info)
-      @bot_path = "#{spec_path}/#{bot_info["name"]}.rb"
+      @bot_path = "#{spec_path}/#{bot_info["name"]}.bot"
       if File.exist? @bot_path
         raise BotExistedError, "Bot #{bot_info["name"]} is existed."
       end
