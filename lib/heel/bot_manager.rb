@@ -1,5 +1,6 @@
 module Heel
   class BotManager
+    include Enumerable
 
     require "yaml"
 
@@ -16,6 +17,12 @@ module Heel
       @triggers_loaded = false
 
       load_bots
+    end
+
+    def each(&block)
+      @members.each do |member|
+        block.call(member)
+      end
     end
 
     def trigger_bot(raw_msg, raw_request = {})
