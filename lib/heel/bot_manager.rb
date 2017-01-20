@@ -20,8 +20,8 @@ module Heel
     end
 
     def each(&block)
-      @members.each do |member|
-        block.call(member)
+      @bot_list.each do |bot|
+        block.call(bot)
       end
     end
 
@@ -60,7 +60,7 @@ module Heel
     def init_bot(bot_name)
       if !@bot_instance.has_key? bot_name
         begin
-          filename = "heelspec/#{bot_name}.bot"
+          filename = "#{spec_path}/#{bot_name}.bot"
           code = File.read(filename)
         rescue
           puts "#{bot_name} not found"
