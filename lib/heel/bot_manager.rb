@@ -35,10 +35,10 @@ module Heel
       @triggers.each do |trigger_text, bot_name|
         if raw_msg.start_with? trigger_text
           # triggered
-          argv = raw_msg.split(trigger_text).at(1)
-          if argv != nil
-            cmd = argv.split
-          end
+          # argv = raw_msg.split(trigger_text).at(1)
+          # if argv != nil
+          #   cmd = argv.split
+          # end
 
           output = ""
           if Heel::Util.console_mode?
@@ -68,9 +68,7 @@ module Heel
         end
       end
 
-      if block_given?
-        yield @bot_instance[bot_name]
-      end
+      yield @bot_instance[bot_name] if block_given?
     end
 
     def run_bot(name)
