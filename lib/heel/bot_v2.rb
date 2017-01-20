@@ -14,10 +14,10 @@ module Heel
         end
       end
 
-      def implement
+      def implement(*args, &block)
       end
 
-      def trigger
+      def trigger(msg, &block)
       end
     end
 
