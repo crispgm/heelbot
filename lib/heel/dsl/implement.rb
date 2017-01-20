@@ -1,8 +1,10 @@
 module Heel
   module DSL
     class Implement < Bot
-      def initialize(block)
-      	@block = block
+      attr_reader :block
+
+      def initialize(&block)
+        @block = block
       end
     end
   end

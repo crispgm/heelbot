@@ -5,10 +5,14 @@ summary  "Hello World v2"
 helptext "Hello World v2"
 license  "MIT"
 
-# trigger "!hv2" do |params|
-#   implement
-# end
+trigger "hv1" do |params|
+  puts "hello, v2!"
+end
 
-# implement do
-#   puts "hello, v2!"
-# end
+trigger "hv2" do |params|
+  puts "hello, v2!"
+end
+
+implement do
+  puts "hello, v2!"
+end

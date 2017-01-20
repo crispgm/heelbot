@@ -1,17 +1,11 @@
 module Heel
   module DSL
     class Trigger < Bot
-      attr_accessor :trigger, :block
+      attr_reader :block, :trigger
 
-      class Trigger
-        def initialize(trigger, block)
-          @trigger = trigger
-          @block = block
-        end
-
-        def trigger(params)
-          @block.call(params)
-        end
+      def initialize(trigger, &block)
+        @trigger = trigger
+        @block = block
       end
     end
   end
