@@ -78,15 +78,15 @@ module Heel
       end
     end
 
-    def run_bot(name, cmd, request = {})
+    def run_bot(name)
       init_bot(name) do |bot|
-        bot.run(cmd)
+        bot.implementation.block.call
       end
     end
 
     def serve_bot(name, request = {})
       init_bot(name) do |bot|
-        bot.serve(request)
+        # bot.serve(request)
       end
     end
 
