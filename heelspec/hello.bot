@@ -1,6 +1,6 @@
-name     "Hello V2" 
+name     "Hello v2"
 author   "David Zhang"
-version  "2.0"
+version  "2.0.0"
 summary  "Hello World v2"
 helptext "Hello World v2"
 license  "MIT"

@@ -34,5 +34,19 @@ class TestBotManager < Minitest::Test
       assert_equal([], @bot_manager_without_default_name.bot_list)
       Heel::Shell.sh "rm #{spec_path}/bots.yml"
     end
+
+    should "show bot info" do
+      bot_info = <<INFO
+Name:     Hello v2
+Version:  2.0.0
+Summary:  Hello World v2
+Author:   David Zhang
+License:  MIT
+Helptext: Hello World v2
+INFO
+      assert_output(bot_info) {
+        @bot_manager.info_bot("hello_world")
+      }
+    end
   end
 end

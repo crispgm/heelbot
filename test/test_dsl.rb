@@ -2,7 +2,7 @@ require "helper"
 
 class TestDsl < Minitest::Test
   context "test dsl" do
-    should "" do
+    should "load bot info" do
       filename = "heelspec/hello.bot".freeze
       code = File.read(filename)
       
@@ -11,8 +11,8 @@ class TestDsl < Minitest::Test
         instance_eval(code)
       end
 
-      assert_equal("Hello V2", bot.name)
-      assert_equal("2.0", bot.version)
+      assert_equal("Hello v2", bot.name)
+      assert_equal("2.0.0", bot.version)
       assert_equal("David Zhang", bot.author)
       assert_equal("Hello World v2", bot.summary)
       assert_equal("Hello World v2", bot.helptext)
