@@ -45,6 +45,7 @@ Summary:  Hello World v2
 Author:   David Zhang
 License:  MIT
 Helptext: Hello World v2
+Triggers: hv1, hv2
 INFO
       assert_output(bot_info) {
         @bot_manager.info_bot("hello")

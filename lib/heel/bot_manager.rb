@@ -104,7 +104,7 @@ module Heel
         puts "Author:   #{bot.author}"
         puts "License:  #{bot.license}"
         puts "Helptext: #{bot.helptext}"
-        # puts "Triggers: #{bot.triggers.join ', '}"
+        puts "Triggers: #{bot.triggers.keys.join ', '}"
       end
     end
 
