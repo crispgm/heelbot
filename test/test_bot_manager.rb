@@ -56,6 +56,11 @@ INFO
     end
 
     context "run bot" do
+      should "call block" do
+        assert_output("hello, v2!\n") {
+          @bot_manager.run_bot("hello")
+        }
+      end
     end
   end
 
