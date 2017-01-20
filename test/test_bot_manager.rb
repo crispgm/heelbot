@@ -11,9 +11,13 @@ class TestBotManager < Minitest::Test
       assert_equal("test/heelspec/bots.yml", @bot_manager.conf_path)
       assert_equal("../../test/heelspec", @bot_manager.bots_path)
       assert_equal(2, @bot_manager.bot_list.size)
-      assert_equal("hello", @bot_manager.bot_list[0]["Name"])
-      assert_equal("test_bot", @bot_manager.bot_list[1]["Name"])
       assert_equal(false, @bot_manager.triggers_loaded)
+    end
+
+    should "iterate bots" do
+      @bot_manager.each do |bot|
+        assert_equal(true, bot["Name"] == "hello" || bot["Name"] == "test")
+      end
     end
 
     should "output error when init inexisted bot" do
@@ -27,12 +31,10 @@ class TestBotManager < Minitest::Test
       assert_equal(true, @bot_manager.bot_instance["hello"].is_a?(Heel::BotV2::DSL))
     end
 
-    should "init without default name" do
-      spec_path = "test/emptyspec"
-      @bot_manager_without_default_name = Heel::BotManager.new(spec_path)
-      assert_equal(spec_path, @bot_manager_without_default_name.spec_path)
-      assert_equal([], @bot_manager_without_default_name.bot_list)
-      Heel::Shell.sh "rm #{spec_path}/bots.yml"
+    should "help bot" do
+      assert_output("Hello World v2\n") {
+        @bot_manager.help_bot("hello")
+      }
     end
 
     should "show bot info" do
@@ -45,8 +47,24 @@ License:  MIT
 Helptext: Hello World v2
 INFO
       assert_output(bot_info) {
-        @bot_manager.info_bot("hello_world")
+        @bot_manager.info_bot("hello")
       }
+    end
+
+    context "trigger bot" do
+    end
+
+    context "run bot" do
+    end
+  end
+
+  context "init without default name" do
+    should "load bots list" do
+      spec_path = "test/emptyspec"
+      @bot_manager_without_default_name = Heel::BotManager.new(spec_path)
+      assert_equal(spec_path, @bot_manager_without_default_name.spec_path)
+      assert_equal([], @bot_manager_without_default_name.bot_list)
+      Heel::Shell.sh "rm #{spec_path}/bots.yml"
     end
   end
 end
