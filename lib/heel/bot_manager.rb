@@ -104,13 +104,7 @@ module Heel
         puts "Author:   #{bot.author}"
         puts "License:  #{bot.license}"
         puts "Helptext: #{bot.helptext}"
-        puts "Triggers: #{bot.triggers.join ', '}"
-      end
-    end
-
-    def list_bot
-      @bot_list.each do |bot|
-        puts "#{bot["Name"]}"
+        # puts "Triggers: #{bot.triggers.join ', '}"
       end
     end
 
