@@ -3,7 +3,6 @@ module Heel
   # Main Funcs
   require "heel/command"
   require "heel/server"
-  require "heel/registry"
   require "heel/response"
   require "heel/dsl/bot"
   require "heel/dsl/implement"
