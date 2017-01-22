@@ -45,7 +45,7 @@ module Heel
 
       args = get_query(request.query_string, "msg")
 
-      bot_name, output = bot_manager.trigger_bot(args, request)
+      bot_name, output = bot_manager.trigger_bot(args)#, request)
 
       resp = Heel::Response.new
       resp.body = output

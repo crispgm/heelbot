@@ -2,11 +2,11 @@
 
 task default: %w[test]
 
-require 'rake/testtask'
+require "rake/testtask"
 
 Rake::TestTask.new do |t|
-  t.libs << 'lib' << 'test' << 'heelspec'
-  t.test_files = FileList['test/test_*.rb']
+  t.libs << "lib" << "test" << "heelspec"
+  p t.test_files = FileList["test/test_*.rb"].exclude(/^test\/test_spec/)
   t.verbose = true
 end
 

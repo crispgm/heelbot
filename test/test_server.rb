@@ -1,38 +1,46 @@
 require "helper"
+require "open-uri"
 
 class TestServer < Minitest::Test
-  def setup
-    @webserver = Process.spawn("script/webrick.rb")
+  context "test server" do
+    setup do
+      @webserver = Process.spawn("script/webrick.rb")
 
-    sleep 1
-  end
+      sleep 1
+    end
 
-  def test_init_with_port
-    argv = ["--port=1111"]
-    server = Heel::Server.new(argv)
-    assert_equal(1111, server.port)
-  end
+    should "init with port" do
+      argv = ["--port=1111"]
+      server = Heel::Server.new(argv)
+      assert_equal(1111, server.port)
+    end
 
-  def test_init_without_port
-    server = Heel::Server.new([])
-    assert_equal(9999, server.port)
-  end
+    should "init without port" do
+      server = Heel::Server.new([])
+      assert_equal(9999, server.port)
+    end
 
-  def test_server
-    require "open-uri"
+    should "return status" do
+      content = open("http://127.0.0.1:9999/heels/status").read
+      response = JSON.parse(content)
 
-    content = open("http://127.0.0.1:9999/heels/status").read
-    response = JSON.parse(content)
+      assert_equal("listening", response["status"])
+      assert_equal(Heel::VERSION, response["version"])
+    end
 
-    assert_equal("listening", response["status"])
-    assert_equal(Heel::VERSION, response["version"])
+    should "return 404 when not trigger" do
+      assert_raises OpenURI::HTTPError do
+        content = open("http://127.0.0.1:9999/heels/query?msg=hv1").read
+        # response = JSON.parse(content)
+        # assert_equal("trigger message error", response["text"])
+      end
+    end
 
-    content = open("http://127.0.0.1:9999/heels/query?msg=!hw%20hello,world").read
-    response = JSON.parse(content)
-    assert_equal("Bot not implemented", response["text"])
-  end
+    should "return data when trigger" do  
+    end
 
-  def teardown
-    Process.kill 'TERM', @webserver
+    teardown do
+      Process.kill 'TERM', @webserver
+    end
   end
 end

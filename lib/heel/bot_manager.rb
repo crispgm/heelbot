@@ -1,5 +1,6 @@
 module Heel
   class BotManager
+    include Enumerable
 
     require "yaml"
 
@@ -18,7 +19,13 @@ module Heel
       load_bots
     end
 
-    def trigger_bot(raw_msg, raw_request = {})
+    def each(&block)
+      @bot_list.each do |bot|
+        block.call(bot)
+      end
+    end
+
+    def trigger_bot(raw_msg)
       get_triggers
 
       if !raw_msg.is_a? String
@@ -28,19 +35,14 @@ module Heel
       @triggers.each do |trigger_text, bot_name|
         if raw_msg.start_with? trigger_text
           # triggered
-          argv = raw_msg.split(trigger_text).at(1)
-          if argv != nil
-            cmd = argv.split
-          end
+          # argv = raw_msg.split(trigger_text).at(1)
+          # if argv != nil
+          #   cmd = argv.split
+          # end
 
           output = ""
-          # run bot
           if Heel::Util.console_mode?
-            run_bot(bot_name, cmd, raw_request)
-          end
-          # serve bot
-          if Heel::Util.web_mode?
-            output = serve_bot(bot_name, raw_request)
+            run_bot(bot_name)
           end
 
           return bot_name, output
@@ -53,30 +55,25 @@ module Heel
     def init_bot(bot_name)
       if !@bot_instance.has_key? bot_name
         begin
-          require_relative "#{@bots_path}/#{bot_name}"
-        rescue LoadError
+          filename = "#{spec_path}/#{bot_name}.bot"
+          code = File.read(filename)
+        rescue
           puts "#{bot_name} not found"
           return
         end
-        bot_class_name = Heel::Util.bot_name_to_class_name(bot_name)
-        bot_class = Object.const_get("Heelspec::#{bot_class_name}")
-        @bot_instance[bot_name] = bot_class.new
+        
+        @bot_instance[bot_name] = Heel::DSL::Bot.new do
+          define_attr("name", "version", "author", "summary", "helptext", "license")
+          instance_eval(code)
+        end
       end
 
-      if block_given?
-        yield @bot_instance[bot_name]
-      end
+      yield @bot_instance[bot_name] if block_given?
     end
 
-    def run_bot(name, cmd, request = {})
+    def run_bot(name)
       init_bot(name) do |bot|
-        bot.run(cmd)
-      end
-    end
-
-    def serve_bot(name, request = {})
-      init_bot(name) do |bot|
-        bot.serve(request)
+        bot.implementation.block.call
       end
     end
 
@@ -94,13 +91,7 @@ module Heel
         puts "Author:   #{bot.author}"
         puts "License:  #{bot.license}"
         puts "Helptext: #{bot.helptext}"
-        puts "Triggers: #{bot.triggers.join ', '}"
-      end
-    end
-
-    def list_bot
-      @bot_list.each do |bot|
-        puts "#{bot["Name"]}"
+        puts "Triggers: #{bot.triggers.keys.join ', '}"
       end
     end
 
@@ -114,7 +105,7 @@ module Heel
       @bot_list.each do |bot_info|
         init_bot(bot_info["Name"]) do |bot|
           if !bot.triggers.empty?
-            bot.triggers.each do |trigger|
+            bot.triggers.each_key do |trigger|
               if @triggers.has_key? trigger
                 puts "Conflict: Trigger #{trigger} is existed."
               end

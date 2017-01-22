@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heelbot (2.1.0)
+    heelbot (3.0.0.alpha1)
       liquid
       mail
       os
@@ -28,7 +28,7 @@ GEM
     parser (2.3.1.4)
       ast (~> 2.2)
     powerpack (0.1.1)
-    rack (1.6.4)
+    rack (1.6.5)
     rack-protection (1.5.3)
       rack
     rainbow (2.1.0)

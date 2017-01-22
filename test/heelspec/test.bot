@@ -1,0 +1,14 @@
+name     "test_bot"
+author   "David Zhang"
+version  "2.0.0"
+summary  "test"
+helptext "test help"
+license  "MIT"
+
+trigger "test" do
+  puts "test"
+end
+
+implement do
+  puts "test"
+end

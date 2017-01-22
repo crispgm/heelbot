@@ -1,18 +1,18 @@
-module Heelspec
-  class {{ name }} < Heel::Bot
-    def initialize
-      @name     = "{{ name }}"
-      @version  = "{{ version }}"
-      @summary  = "{{ summary }}"
-      @author   = "{{ author }}"
-      @license  = "{{ license }}"
-      @helptext = "{{ helptext }}"
-      @triggers = %w({{ triggers | join " " }})
-    end
+name     "{{ name }}"
+version  "{{ version }}"
+summary  "{{ summary }}"
+author   "{{ author }}"
+license  "{{ license }}"
+helptext "{{ helptext }}"
 
-    def run(cmd)
-      @msg = get_param(cmd, 0)
-      puts @msg
-    end
-  end
+implement do
+  puts "Hello, world!"
 end
+
+{% if triggers.size > 0 %}
+  {% for trigger in triggers %}
+trigger "{{ trigger }}" do
+  puts "Added a trigger: {{ trigger }}"
+end
+  {% endfor %}
+{% endif %}
