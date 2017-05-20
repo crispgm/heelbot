@@ -1,8 +1,6 @@
 # Heelbot
 
-[![Join the chat at https://gitter.im/crispgm/heelbot](https://badges.gitter.im/crispgm/heelbot.svg)](https://gitter.im/crispgm/heelbot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-![](https://img.shields.io/badge/license-MIT-blue.svg)
-[![](https://api.travis-ci.org/crispgm/heelbot.svg)](https://travis-ci.org/crispgm/heelbot)
+[![](https://api.travis-ci.org/dripcoffee/heelbot.svg)](https://travis-ci.org/dripcoffee/heelbot)
 [![Code Climate](https://codeclimate.com/github/crispgm/heelbot/badges/gpa.svg)](https://codeclimate.com/github/crispgm/heelbot)
 [![Test Coverage](https://codeclimate.com/github/crispgm/heelbot/badges/coverage.svg)](https://codeclimate.com/github/crispgm/heelbot/coverage)
 
