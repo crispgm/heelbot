@@ -1,8 +1,8 @@
 # Heelbot
 
-[![](https://api.travis-ci.org/dripcoffee/heelbot.svg)](https://travis-ci.org/dripcoffee/heelbot)
-[![Code Climate](https://codeclimate.com/github/crispgm/heelbot/badges/gpa.svg)](https://codeclimate.com/github/crispgm/heelbot)
-[![Test Coverage](https://codeclimate.com/github/crispgm/heelbot/badges/coverage.svg)](https://codeclimate.com/github/crispgm/heelbot/coverage)
+[![](https://api.travis-ci.org/crispgm/heelbot.svg)](https://travis-ci.org/crispgm/heelbot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6429712f8bcb9907afd1/maintainability)](https://codeclimate.com/github/crispgm/heelbot/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6429712f8bcb9907afd1/test_coverage)](https://codeclimate.com/github/crispgm/heelbot/test_coverage)
 
 ## Introduction
 
